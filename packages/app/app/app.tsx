@@ -8,7 +8,7 @@ import { store } from "./store"
 import * as storage from "./utils/storage"
 import { useBackButtonHandler, RootNavigator, canExit, setRootNavigation, useNavigationPersistence } from "./navigators"
 import { PermissionsProvider } from "./contexts/permissions"
-import { LanguageProvider } from "./contexts/language"
+import { SettingsProvider } from "./contexts/settings"
 import { bootstrap } from "./bootstrap"
 import { Text } from "./components"
 import { AuthProvider } from "./contexts/auth"
@@ -43,7 +43,7 @@ function App() {
 
   // otherwise, we're ready to render the app
   return (
-    <LanguageProvider>
+    <SettingsProvider>
       <AuthProvider>
         <UserProvider>
           <Provider store={store}>
@@ -59,7 +59,7 @@ function App() {
           </Provider>
         </UserProvider>
       </AuthProvider>
-    </LanguageProvider>
+    </SettingsProvider>
   )
 }
 
