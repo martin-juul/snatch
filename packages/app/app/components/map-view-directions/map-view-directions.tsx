@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from "react"
 import { Polyline } from "react-native-maps"
-import isEqual from "lodash.isequal"
+import { isEqual } from "lodash-es"
 import { MapViewDirectionsProps, MapViewDirectionsState } from "./types"
 
 const WAYPOINT_LIMIT = 10
