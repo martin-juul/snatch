@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/martin-juul/snatch/compare/v1.5.0...v1.6.0) (2021-09-29)
+
+
+### Bug Fixes
+
+* **basket:** merge item if added again ([61e35cf](https://github.com/martin-juul/snatch/commit/61e35cf7555a31741fbe724ab768d1832db68cea))
+
+
+### Features
+
+* **order:** submit order to firestore ([17fb07a](https://github.com/martin-juul/snatch/commit/17fb07a2b5138f251bec2d6e91ae5af8a902b0d0))
+
+
+
+
+
 # [1.5.0](https://github.com/martin-juul/snatch/compare/v1.4.0...v1.5.0) (2021-09-22)
 
 
