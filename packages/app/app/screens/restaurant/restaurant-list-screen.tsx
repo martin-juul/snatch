@@ -32,12 +32,10 @@ export const RestaurantListScreen = ({ navigation }: Props) => {
     fetchData()
   }, [])
 
-  const goToRestaurant = (id: string) => {
-    navigation.navigate(RestaurantRoute.Detail, { restaurantId: id })
-  }
+  const goToRestaurant = (id: string) => navigation.navigate(RestaurantRoute.Detail, { restaurantId: id })
 
   return (
-    <View testID="RestaurantListScreen" style={FULL}>
+    <View testID="RestaurantListScreen" style={ROOT}>
       <Screen preset="fixed" statusBar="dark-content">
         {restaurants && (
           <FlatList
@@ -47,7 +45,7 @@ export const RestaurantListScreen = ({ navigation }: Props) => {
               <Card
                 flex
                 onPress={() => goToRestaurant(item.id)}
-                style={{ padding: 10, marginTop: spacing[4] }}
+                style={CARD}
               >
                 <FastImage
                   style={ITEM_IMAGE}
@@ -55,7 +53,7 @@ export const RestaurantListScreen = ({ navigation }: Props) => {
                   resizeMode={FastImage.resizeMode.stretch}
                 />
 
-                <View style={{ marginLeft: 20, marginTop: 5 }}>
+                <View style={ACTION_SHEET}>
                   <Text text={item.name} />
                   <Text text={item.type} preset="secondary" />
                 </View>
@@ -68,7 +66,21 @@ export const RestaurantListScreen = ({ navigation }: Props) => {
   )
 }
 
-const FULL: ViewStyle = { flex: 1 }
-const ITEM_CONTAINER: ViewStyle = { width: "100%" }
-const ITEM_TEXT_CONTAINER: ViewStyle = { paddingLeft: 25 }
-const ITEM_IMAGE: ImageStyle = { width: "90%", height: 200, alignSelf: "center" }
+const ROOT: ViewStyle = {
+  flex: 1,
+}
+
+const CARD: ViewStyle = {
+  padding: 10,
+  marginTop: spacing[4],
+}
+const ITEM_IMAGE: ImageStyle = {
+  alignSelf: "center",
+  height: 200,
+  width: "90%",
+}
+
+const ACTION_SHEET: ViewStyle = {
+  marginLeft: 20,
+  marginTop: 5,
+}
