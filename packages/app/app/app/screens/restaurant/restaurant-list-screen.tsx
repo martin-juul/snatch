@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { FlatList, Pressable, View, ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
-import { useNavigation } from "@react-navigation/native"
 import FastImage, { ImageStyle } from "react-native-fast-image"
 import firestore from "@react-native-firebase/firestore"
 import { Collection, RestaurantModel } from "../../firestore/collections"
+import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 
-export const RestaurantListScreen: React.FC = () => {
-  const navigation = useNavigation()
+interface Props extends RestaurantProps<RestaurantRoute.List> {
 
+}
+
+export const RestaurantListScreen = ({ navigation }: Props) => {
   const [restaurants, setRestaurants] = useState<RestaurantModel[]>()
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export const RestaurantListScreen: React.FC = () => {
   }, [])
 
   const goToRestaurant = (id: string) => {
-    navigation.navigate("RestaurantDetail", { id })
+    navigation.navigate(RestaurantRoute.Detail, { id })
   }
 
   return (
