@@ -1,28 +1,28 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import React from "react"
+import { createStackNavigator } from "@react-navigation/stack"
 import {
   RestaurantItemScreen,
   RestaurantListScreen,
   RestaurantScreen,
-} from '../../screens';
+} from "../../screens"
 
 export type RestaurantParamList = {
-  RestaurantList;
-  RestaurantDetail;
-  RestaurantOrder;
+  RestaurantList: undefined;
+  RestaurantDetail: undefined;
+  RestaurantOrder: undefined;
 };
 
-const RestaurantStack = createStackNavigator<RestaurantParamList>();
+const RestaurantStack = createStackNavigator<RestaurantParamList>()
 
 export const RestaurantsNavigator = () => (
   <RestaurantStack.Navigator>
     <RestaurantStack.Screen
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
       name="RestaurantList"
       component={RestaurantListScreen}
     />
     <RestaurantStack.Screen
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
       name="RestaurantDetail"
       component={RestaurantScreen}
     />
@@ -31,4 +31,4 @@ export const RestaurantsNavigator = () => (
       component={RestaurantItemScreen}
     />
   </RestaurantStack.Navigator>
-);
+)

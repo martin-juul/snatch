@@ -1,5 +1,4 @@
-import {FoodMenuItem} from '../../models/food-menu-item/food-menu-item';
-import {MOCK_FOOD_ITEMS, MOCK_RESTAURANT, Restaurant} from '../restaurant/mock';
+import { FoodMenuItem, MOCK_FOOD_ITEMS, MOCK_RESTAURANT, Restaurant } from "../restaurant/mock"
 
 export interface Order {
   id: number;
@@ -17,4 +16,4 @@ export const Orders: Order[] = [
     totalPrice: 20343,
     createdAt: new Date(),
   },
-];
+]

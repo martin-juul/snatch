@@ -1,22 +1,17 @@
 import React, {useEffect} from 'react';
-import {observer} from 'mobx-react-lite';
 import {FlatList, Pressable, View, ViewStyle} from 'react-native';
 import {Screen, Text} from '../../components';
 import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
-import {useStores} from '../../models';
 
 const FULL: ViewStyle = {flex: 1};
 
-export const RestaurantListScreen = observer(() => {
+export const RestaurantListScreen: React.FC = () => {
   const navigation = useNavigation();
-
-  const {restaurantStore} = useStores();
-  const {restaurants} = restaurantStore;
 
   useEffect(() => {
     async function fetchData() {
-      await restaurantStore.getRestaurants();
+     // await restaurantStore.getRestaurants();
     }
 
     fetchData();
@@ -31,7 +26,7 @@ export const RestaurantListScreen = observer(() => {
       <Screen preset="fixed" statusBar="dark-content">
         <View style={{marginHorizontal: 20}}>
           <FlatList
-            data={[...restaurants]}
+            data={[]}
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) => (
               <Pressable onPress={() => goToRestaurant()}>
@@ -50,4 +45,4 @@ export const RestaurantListScreen = observer(() => {
       </Screen>
     </View>
   );
-});
+}

@@ -1,5 +1,3 @@
-import {FoodMenuItem} from '../../models/food-menu-item/food-menu-item';
-
 export interface Restaurant {
   id: number;
   name: string;
@@ -64,6 +62,14 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     image: 'https://via.placeholder.com/800x400',
   },
 ];
+
+export interface FoodMenuItem {
+  id: number
+  name: string
+  type: string
+  image: string
+  price: number
+}
 
 export const MOCK_FOOD_ITEMS: FoodMenuItem[] = [
   {
