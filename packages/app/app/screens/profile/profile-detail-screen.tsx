@@ -4,12 +4,11 @@ import { ProfileProps, ProfileRoute } from "../../navigators/profile/profile-nav
 import firestore from "@react-native-firebase/firestore"
 import { Customer } from "../../firestore/collections/customer"
 import { useAuth } from "../../contexts/auth"
-import { StyleSheet, ViewStyle } from "react-native"
+import { ViewStyle } from "react-native"
 import { Card, View } from "react-native-ui-lib"
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 
-interface Props extends ProfileProps<ProfileRoute.Detail> {
-}
+interface Props extends ProfileProps<ProfileRoute.Detail> {}
 
 export const ProfileDetailScreen = ({ navigation }: Props) => {
   const auth = useAuth()
@@ -87,4 +86,5 @@ const ROOT: ViewStyle = {
 }
 
 const CARD: ViewStyle = {
-  marginHorizontal: 25, padding: 12 }
+  marginHorizontal: 25, padding: 12,
+}
