@@ -16,7 +16,7 @@
 		4A1681E96E22449ABBE841A3 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 902781CF3E454761A5FC4ACE /* OpenSans-LightItalic.ttf */; };
 		55D95450618946268E106208 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A8CDC54A58614323BABE8F48 /* OpenSans-Light.ttf */; };
 		5B656D2C26E757A3000BA1E3 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B656D2B26E757A3000BA1E3 /* File.swift */; };
-		5B656D2E26E76684000BA1E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B656D2D26E76684000BA1E3 /* GoogleService-Info.plist */; };
+		5B9388DC26F1E6350069E025 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B9388DB26F1E6350069E025 /* GoogleService-Info.plist */; };
 		75E335A9F64B4DDBA605CD5D /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 774CD4893AD3482C98C83AEE /* OpenSans-Italic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		85044BD113144BB19D6DF574 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F18A479BAE34086BD70DDF1 /* OpenSans-Regular.ttf */; };
@@ -58,8 +58,8 @@
 		53D9F5BFF6AF4B4FA0E1F6A6 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		5B656D2A26E757A2000BA1E3 /* Snatch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Snatch-Bridging-Header.h"; sourceTree = "<group>"; };
 		5B656D2B26E757A3000BA1E3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = File.swift; path = Snatch/File.swift; sourceTree = "<group>"; };
-		5B656D2D26E76684000BA1E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B75147626E776C700CC3D7A /* Snatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Snatch.entitlements; path = Snatch/Snatch.entitlements; sourceTree = "<group>"; };
+		5B9388DB26F1E6350069E025 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../firebase/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		774CD4893AD3482C98C83AEE /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../assets/fonts/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		7C911DC42B894AC5A31364D1 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Snatch/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				5B75147626E776C700CC3D7A /* Snatch.entitlements */,
-				5B656D2D26E76684000BA1E3 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -161,6 +160,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5B9388DB26F1E6350069E025 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* Snatch */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SnatchTests */,
@@ -298,7 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B656D2E26E76684000BA1E3 /* GoogleService-Info.plist in Resources */,
+				5B9388DC26F1E6350069E025 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				33BADC69C2F44EB7BA91AFDD /* OpenSans-Bold.ttf in Resources */,
