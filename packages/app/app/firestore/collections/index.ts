@@ -1,5 +1,5 @@
-export * from './restaurant'
+export * from "./restaurant"
 
 export enum Collection {
-  Restaurants = 'restaurant',
+  Restaurants = "restaurant",
 }

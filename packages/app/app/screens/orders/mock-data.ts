@@ -1,11 +1,11 @@
 import { FoodMenuItem, MOCK_FOOD_ITEMS, MOCK_RESTAURANT, Restaurant } from "../restaurant/mock"
 
 export interface Order {
-  id: number;
-  restaurants: Restaurant;
-  items: FoodMenuItem[];
-  totalPrice: number;
-  createdAt: Date;
+  id: number
+  restaurants: Restaurant
+  items: FoodMenuItem[]
+  totalPrice: number
+  createdAt: Date
 }
 
 export const Orders: Order[] = [

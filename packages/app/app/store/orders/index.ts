@@ -21,8 +21,6 @@ const orders = createSlice({
   },
 })
 
-export const {
-  setSelected,
-} = orders.actions
+export const { setSelected } = orders.actions
 
 export default orders.reducer

@@ -48,7 +48,7 @@ export const OrderTrackingScreen: React.FC = () => {
   })
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       for (const pos of MOCK_DRIVER_POS_COORDS) {
         console.log(pos)
         setDriverPosition(pos)
@@ -65,7 +65,7 @@ export const OrderTrackingScreen: React.FC = () => {
   //         snapshot.get<FirebaseFirestoreTypes.GeoPoint[]>('geopoints');
   //       setDriverPosition(points[points.length - 1]);
   //     });
-//
+  //
   //   return () => {
   //     // unsubscribe
   //     subscription();
@@ -101,7 +101,8 @@ export const OrderTrackingScreen: React.FC = () => {
         }}
         style={{
           flex: 1,
-        }}>
+        }}
+      >
         <MapViewDirections
           apikey="AIzaSyBaJ0UeOoHDtDg8zKNz0q9Cc19N_HuCz4s"
           origin={origin}
@@ -123,16 +124,14 @@ export const OrderTrackingScreen: React.FC = () => {
         </Marker>
       </MapView>
 
-      {__DEV__ && (
-        <RegionOverlay region={viewRegion} />
-      )}
+      {__DEV__ && <RegionOverlay region={viewRegion} />}
     </Screen>
   )
 }
 
 type RegionOverlayProps = {
-  region: Region;
-};
+  region: Region
+}
 
 function RegionOverlay({ region }: RegionOverlayProps) {
   return (
@@ -145,7 +144,8 @@ function RegionOverlay({ region }: RegionOverlayProps) {
         left: 70,
         padding: 10,
         borderRadius: 20,
-      }}>
+      }}
+    >
       <Text>Latitude {region.latitude.toPrecision(7)}</Text>
       <Text>Longitude {region.longitude.toPrecision(7)}</Text>
 

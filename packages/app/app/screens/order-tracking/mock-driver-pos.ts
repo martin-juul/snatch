@@ -24,11 +24,11 @@ export const MOCK_DRIVER_POS_COORDS = [
     longitude: 10.3999304,
   },
   {
-    latitude : 55.4043733,
-    longitude : 10.3988526
+    latitude: 55.4043733,
+    longitude: 10.3988526,
   },
   {
-    latitude : 55.3991292,
-    longitude : 10.4056463
-  }
+    latitude: 55.3991292,
+    longitude: 10.4056463,
+  },
 ]

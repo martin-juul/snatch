@@ -14,7 +14,7 @@ export const OrdersScreen: React.FC = () => {
       <Text preset="header" text="Orders" />
 
       <FlatList
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()}
         data={[...Orders]}
         renderItem={({ item }) => (
           <Pressable style={{ flexDirection: "row" }}>

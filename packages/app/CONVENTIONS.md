@@ -10,4 +10,3 @@ Scripts should be in the `bin` directory.
 
 When calling scripts with parameters e.g. in `package.json` you **MUST** use long parameters names.
 It's confusing when shorthands are used, if a developer is not familiar with the binary options.
-

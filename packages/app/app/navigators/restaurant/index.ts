@@ -1,1 +1,1 @@
-export * from './restaurant-navigator'
+export * from "./restaurant-navigator"

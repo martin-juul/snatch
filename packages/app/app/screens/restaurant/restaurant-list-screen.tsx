@@ -6,9 +6,7 @@ import firestore from "@react-native-firebase/firestore"
 import { Collection, RestaurantModel } from "../../firestore/collections"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 
-interface Props extends RestaurantProps<RestaurantRoute.List> {
-
-}
+interface Props extends RestaurantProps<RestaurantRoute.List> {}
 
 export const RestaurantListScreen = ({ navigation }: Props) => {
   const [restaurants, setRestaurants] = useState<RestaurantModel[]>()
@@ -41,18 +39,10 @@ export const RestaurantListScreen = ({ navigation }: Props) => {
         {restaurants && (
           <FlatList
             data={restaurants}
-
-            keyExtractor={item => item.id}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <Pressable
-                onPress={() => goToRestaurant(item.id)}
-                style={ITEM_CONTAINER}
-              >
-                <FastImage
-                  style={ITEM_IMAGE}
-                  source={{ uri: item.image }}
-                  resizeMode={FastImage.resizeMode.contain}
-                />
+              <Pressable onPress={() => goToRestaurant(item.id)} style={ITEM_CONTAINER}>
+                <FastImage style={ITEM_IMAGE} source={{ uri: item.image }} resizeMode={FastImage.resizeMode.contain} />
 
                 <View style={ITEM_TEXT_CONTAINER}>
                   <Text text={item.name} />

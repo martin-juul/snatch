@@ -7,8 +7,7 @@ import { color, spacing } from "../../theme"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 import { useLanguage } from "../../contexts/language"
 
-interface Props extends RestaurantProps<RestaurantRoute.Detail> {
-}
+interface Props extends RestaurantProps<RestaurantRoute.Detail> {}
 
 export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
   const [restaurant, setRestaurant] = useState<RestaurantModel>()
@@ -56,13 +55,7 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
   return (
     <View testID="RestaurantDetailScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" statusBar="dark-content">
-        <Header
-          leftIcon="back"
-          onLeftPress={() => navigation.goBack()}
-          style={HEADER}
-          titleStyle={HEADER_TITLE}
-        />
-
+        <Header leftIcon="back" onLeftPress={() => navigation.goBack()} style={HEADER} titleStyle={HEADER_TITLE} />
 
         {restaurant && (
           <View style={RESTAURANT_CONTAINER}>
@@ -78,11 +71,10 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
           <FlatList
             contentContainerStyle={FLAT_LIST}
             data={[...menuItems]}
-            keyExtractor={item => String(item.id)}
+            keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <Pressable onPress={() => navigation.navigate(RestaurantRoute.Order)}>
                 <View style={LIST_CONTAINER}>
-
                   <View style={LIST_ITEM_CONTAINER}>
                     <View style={LIST_ITEM_TEXT_CONTAINER}>
                       <Text style={LIST_TEXT}>{item.name}</Text>
@@ -90,16 +82,13 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
                       <Text style={LIST_SUB_TEXT}>{item.description[currentLanguage]}</Text>
                     </View>
 
-                    <Text style={LIST_PRICE_TEXT}>
-                      {(item.price / 100).toString().replace(".", ",")} kr.
-                    </Text>
+                    <Text style={LIST_PRICE_TEXT}>{(item.price / 100).toString().replace(".", ",")} kr.</Text>
                   </View>
                 </View>
               </Pressable>
             )}
           />
         )}
-
       </Screen>
     </View>
   )

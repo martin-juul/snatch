@@ -13,4 +13,4 @@ export const initFonts = async () => {
   //   "OpenSans-SemiBold": require("./OpenSans-SemiBold.ttf"),
   //   "OpenSans-SemiBoldItalic": require("./OpenSans-SemiBoldItalic.ttf"),
   // })
-};
+}

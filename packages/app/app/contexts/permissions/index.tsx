@@ -15,8 +15,7 @@ export function PermissionsProvider({ children }: PermissionsProviderProps) {
     settings: null,
   })
 
-  const requester = () =>
-    requestNotifications(["alert", "sound"]).then(r => setNotifications(r))
+  const requester = () => requestNotifications(["alert", "sound"]).then((r) => setNotifications(r))
 
   return (
     <PermissionsContext.Provider
@@ -25,7 +24,8 @@ export function PermissionsProvider({ children }: PermissionsProviderProps) {
           state: notifications,
           request: requester,
         },
-      }}>
+      }}
+    >
       {children}
     </PermissionsContext.Provider>
   )

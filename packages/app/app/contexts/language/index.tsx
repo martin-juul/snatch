@@ -14,18 +14,14 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
   useEffect(() => {
     const ctx: DeviceLanguageContext = {
-      currentLanguage: 'en',
+      currentLanguage: "en",
       iso639_1: getDeviceLanguage(),
     }
 
     setContext(ctx)
   }, [])
 
-  return (
-    <LanguageContext.Provider value={context}>
-      {children}
-    </LanguageContext.Provider>
-  )
+  return <LanguageContext.Provider value={context}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {

@@ -30,9 +30,7 @@ export const RestaurantItemScreen: React.FC = () => {
 
           <View style={PRICE_CONTAINER}>
             <Text tx="common.price" style={PRICE_LABEL} />
-            <Text
-              text={(item.price / 100).toString().replace(".", ",") + " kr."}
-            />
+            <Text text={(item.price / 100).toString().replace(".", ",") + " kr."} />
           </View>
         </View>
 

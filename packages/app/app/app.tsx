@@ -8,13 +8,7 @@ import { initFonts } from "./theme/fonts"
 import { Provider } from "react-redux"
 import { store } from "./store"
 import * as storage from "./utils/storage"
-import {
-  useBackButtonHandler,
-  RootNavigator,
-  canExit,
-  setRootNavigation,
-  useNavigationPersistence,
-} from "./navigators"
+import { useBackButtonHandler, RootNavigator, canExit, setRootNavigation, useNavigationPersistence } from "./navigators"
 import { PermissionsProvider } from "./contexts/permissions"
 import { LanguageProvider } from "./contexts/language"
 
@@ -24,12 +18,14 @@ function App() {
   const navigationRef = useRef<NavigationContainerRef<any>>()
   setRootNavigation(navigationRef)
   useBackButtonHandler(navigationRef, canExit)
-  const { initialNavigationState, onNavigationStateChange } =
-    useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
+  const { initialNavigationState, onNavigationStateChange } = useNavigationPersistence(
+    storage,
+    NAVIGATION_PERSISTENCE_KEY,
+  )
 
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       await initFonts()
     })()
   }, [])
