@@ -4,8 +4,6 @@ sidebar: auto
 
 # Overview
 
-[[toc]]
-
 ```mermaid
 graph LR
 subgraph mobile-app[Mobile app]
