@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
 import * as firebase from "firebase-admin";
 
-export const newOrder = functions.https.onRequest((req, resp) => {
+export const newOrder = functions.https.onRequest(async (req, resp) => {
   const orderId = req.get("orderId");
   if (!orderId) {
     resp.status(422).send(JSON.stringify({
@@ -11,7 +11,9 @@ export const newOrder = functions.https.onRequest((req, resp) => {
     return;
   }
 
-  findAndNotifyDriver(orderId);
+  await findAndNotifyDriver(orderId);
+
+  resp.status(204);
 });
 
 const findAndNotifyDriver = async (orderId: string) => {
@@ -21,12 +23,16 @@ const findAndNotifyDriver = async (orderId: string) => {
       .limit(1)
       .get();
 
+  // TODO: sort list using calculateCrowDistance
+
   const driver = q.docs[0];
 
   if (!driver) {
     console.error("Could not find driver");
     return;
   }
+
+  console.log("findAndNotifyDriver: found driver", driver);
 
   const notificationKey = driver.get("notificationKey") as string;
   if (!notificationKey) {
@@ -41,11 +47,7 @@ const findAndNotifyDriver = async (orderId: string) => {
     },
   });
 
-  await firebase.firestore().doc(`/drivers/${driver.id}`).update({
-    orderId,
-  });
-
   await firebase.firestore().doc(`/orders/${orderId}`).update({
-    driverId: driver.id,
+    driverId: driver.ref.path,
   });
 };
