@@ -25,7 +25,14 @@ export const RestaurantItemScreen = ({ route, navigation }: Props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await firestore().doc<RestaurantMenuItem>(`restaurant/${route.params.restaurantId}/menu-items/${route.params.itemId}`).get()
+      const res = await firestore()
+        .doc<RestaurantMenuItem>(`restaurant/${route.params.restaurantId}/menu-items/${route.params.itemId}`)
+        .get()
+
+      if (!res.exists) {
+        throw new Error("Could not find item")
+      }
+
       const model = res.data()
       model.id = res.id
       setItem(model)
@@ -40,8 +47,6 @@ export const RestaurantItemScreen = ({ route, navigation }: Props) => {
     }
 
     if (basket.restaurantId !== route.params.restaurantId) {
-      console.log(basket.restaurantId, route.params.restaurantId)
-      // TODO: show message to user that a basket can only be associated with 1 restaurant
       return
     }
 
@@ -53,8 +58,6 @@ export const RestaurantItemScreen = ({ route, navigation }: Props) => {
     }
 
     dispatch(addItemToBasket(model))
-
-    console.log(basket)
 
     navigation.goBack()
   }
@@ -91,10 +94,9 @@ export const RestaurantItemScreen = ({ route, navigation }: Props) => {
           </View>
         </>
         : <>
-          <View>
-            <Text>Loading</Text>
-          </View>
-        </>}
+          <Text tx="common.loading" />
+        </>
+      }
     </Screen>
   )
 }
