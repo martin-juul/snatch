@@ -1,4 +1,6 @@
 {
+  "maxWorkers": 1,
+  "testTimeout": 120000,
   "setupFilesAfterEnv": ["./init.js"],
   "testEnvironment": "node"
 }
