@@ -1,37 +1,36 @@
 import React from "react"
 import { ViewStyle } from "react-native"
 import { View } from "react-native-ui-lib"
-import { GoogleSignIn, Screen, Text } from "../../components"
+import { Header, Screen } from "../../components"
 import { color } from "../../theme"
-import { AppleButton } from "@invertase/react-native-apple-authentication"
-import { useAuth } from "../../contexts/auth"
+import { SignInWithOauth } from "./sign-in-with-oauth"
+import { SignInWithPassword } from "./sign-in-with-password"
 
 
-export const SignInScreen = () => {
-  const auth = useAuth()
+export const SignInScreen = () => (
+  <Screen testID="SignInScreen" style={ROOT} preset="scroll">
+    <Header headerTx="signIn" />
 
-  return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="" />
-
-      <View reanimated>
-        <GoogleSignIn />
-
-        <AppleButton
-          buttonStyle={AppleButton.Style.WHITE}
-          buttonType={AppleButton.Type.SIGN_IN}
-          style={{
-            width: 160,
-            height: 45,
-          }}
-          onPress={() => auth.authenticate.appleSignIn()}
-        />
+    <View style={SIGN_IN_CONTAINER}>
+      <View style={SIGN_IN_WITH_PASSWORD_CONTAINER}>
+        <SignInWithPassword />
       </View>
-    </Screen>
-  )
-}
+
+      <SignInWithOauth />
+    </View>
+  </Screen>
+)
 
 const ROOT: ViewStyle = {
   backgroundColor: color.background,
   flex: 1,
+}
+
+const SIGN_IN_CONTAINER: ViewStyle = {
+  alignItems: "center",
+}
+
+const SIGN_IN_WITH_PASSWORD_CONTAINER: ViewStyle = {
+  marginTop: "45%",
+  marginBottom: "10%",
 }
