@@ -49,6 +49,15 @@ export const textPresets: Record<ButtonPresetNames, TextStyle> = {
     fontSize: 22,
   } as TextStyle,
 
+  secondary: {
+    ...BASE_TEXT,
+    color: color.palette.white,
+    fontFamily: "OpenSans-SemiBold",
+    fontSize: 12,
+    paddingHorizontal: spacing[1],
+    paddingVertical: spacing[1],
+  } as TextStyle,
+
   link: {
     ...BASE_TEXT,
     color: color.text,
