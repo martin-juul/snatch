@@ -24,7 +24,68 @@ for fremtidig udvikling.
 Software kernen består af nøje udvalgte biblioteker, der har en hvis popularitet. Samt tjekket igennem for at sikre, at
 de __ikke__ er licenseret med licenser der, kunne skabe problemer i forhold til ophavsret.
 
-React Native har også runtimes til macOS, Windows og Web - hvilket giver mulighed for at dele samme kodebase på tværs.
+React Native har også runtimes til macOS, Windows og Web - hvilket giver mulighed for at dele samme kodebase på tværs af platformene.
+
+## Ordrerbehandling
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant R as Restaurant
+    participant D as Driver
+    U->>R: Create order
+    loop Healthcheck
+        R->>D: Find available Driver
+    end
+    Note right of R: Firebase Cloud Function
+    D->>U: Request confirmation
+    U->>D: Confirm
+```
+
+### Beregning af distance
+
+Når en bruger opretter en ordrer, bliver udbringeren fundet ved at slå alle udbringere op i databasen, beregnet på den
+mindste afstand i fugleflugt. Denne løsning er valgt, da det vil være for dyrt at bruge et api kald, til beregning af
+den reelle afstand med f.eks. Google Maps Directions.
+
+```typescript
+/**
+ * Converts numeric degrees to radians
+ * @param {number} val
+ *
+ * @return {number}
+ */
+function toRad(val: number) {
+  return val * Math.PI / 180;
+}
+
+export interface GeoPoint {
+  latitude: number;
+  longitude: number;
+}
+
+/**
+ * Calculates the Crow distance between 2 geographic points
+ * @param {GeoPoint} point1
+ * @param {GeoPoint} point2
+ *
+ * @return {number}
+ */
+export function calculateCrowDistance(point1: GeoPoint, point2: GeoPoint): number {
+  const R = 6371; // km
+  const dLat = toRad(point2.latitude - point1.latitude);
+  const dLon = toRad(point2.longitude - point1.longitude);
+  const lat1 = toRad(point1.latitude);
+  const lat2 = toRad(point2.longitude);
+
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return R * c;
+}
+```
+_Bemærk: Du kan scrolle horisontalt_
 
 ## Sikkerhed
 
@@ -35,9 +96,27 @@ sikkerheden, sparer udviklingstid og får en langt højere sikkerhed der, er ver
 
 ### Cloud Firestore Sikkerhedspolitikker
 
-Cloud Firestore Security Rules er en DSL til at opbygge adgangskontrol (ACL) samt datavalidering. I sammenhæng med
-Firebase Authentication, er hele databasen beskyttet ned på attribut niveau - for at undgå uhensigtsmæssig datalæk bland
-bruger profiler.
+Cloud Firestore Security Rules er et domain specific language (DSL) skrevet til at opbygge adgangskontrol (ACL) samt
+datavalidering i Firestore. I sammenhæng med Firebase Authentication, er hele databasen beskyttet ned på attribut niveau
+for at undgå uhensigtsmæssig datalæk blandt brugerprofiler.
+
+Den aktuelle sikkerhedspolitik kan ses nedenunder.
+
+```ruby
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if
+          request.time > timestamp.date(2021, 9, 29) && request.auth.token != null;
+    }
+  }
+  match /users/{userId} {
+    allow read, update, delete: if request.auth != null && request.auth.uid == userId;
+    allow create: if request.auth != null;
+  }
+}
+```
 
 ## Teknologier
 
