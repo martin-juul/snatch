@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTLinkingManager.h>
 
 // UniModules per https://docs.expo.io/bare/installing-unimodules/
 #import <UMCore/UMModuleRegistry.h>
@@ -46,7 +47,9 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
-  [FIRApp configure];
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
   
   NSString *gmapsApiKey = [ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY"];
   [GMSServices provideAPIKey:gmapsApiKey];
@@ -79,6 +82,24 @@ static void InitializeFlipper(UIApplication *application) {
     return extraModules;
 }
 
+// MARK - Deep linking
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
+
+
+- (BOOL)application:(UIApplication *)application
+            continueUserActivity:(nonnull NSUserActivity *)userActivity
+            restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
+{
+  return [RCTLinkingManager application:application
+  continueUserActivity:userActivity
+  restorationHandler:restorationHandler];
+}
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
