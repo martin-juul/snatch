@@ -6,14 +6,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # [1.2.0](https://github.com/martin-juul/snatch/compare/v1.1.0...v1.2.0) (2021-09-16)
 
 
-### Bug Fixes
+### Features
 
-* **firebase-storage:** tighten security rules ([bba86fa](https://github.com/martin-juul/snatch/commit/bba86fa184fc9c7c307ce9b822290259faa82340))
-
-
-
-
-
-# 1.1.0 (2021-09-15)
-
-**Note:** Version bump only for package firebase
+* **branding:** added icon ([6fcf567](https://github.com/martin-juul/snatch/commit/6fcf567a30ac8db899927cab75c571418de660b0))
