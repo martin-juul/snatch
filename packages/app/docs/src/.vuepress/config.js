@@ -60,6 +60,7 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: [
+    '@vuepress/active-header-links',
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
     '@renovamen/vuepress-plugin-mermaid',
