@@ -1,3 +1,7 @@
+// Polyfills
+import 'react-native-get-random-values'
+
+// Dependencies
 import { enableScreens } from "react-native-screens"
 import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import Config from "react-native-config"
