@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react"
 import { FlatList, Pressable, View, ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
 import { useNavigation } from "@react-navigation/native"
-import FastImage from "react-native-fast-image"
+import FastImage, { ImageStyle } from "react-native-fast-image"
 import firestore from "@react-native-firebase/firestore"
 import { Collection, RestaurantModel } from "../../firestore/collections"
-
-const FULL: ViewStyle = { flex: 1 }
 
 export const RestaurantListScreen: React.FC = () => {
   const navigation = useNavigation()
@@ -19,10 +17,11 @@ export const RestaurantListScreen: React.FC = () => {
       const models = []
 
       for (const restaurant of restaurants.docs) {
-        models.push(restaurant.data())
-      }
+        const model = restaurant.data()
+        model.id = restaurant.id
 
-      console.log(models)
+        models.push(model)
+      }
 
       setRestaurants(models)
     }
@@ -30,35 +29,43 @@ export const RestaurantListScreen: React.FC = () => {
     fetchData()
   }, [])
 
-  const goToRestaurant = () => {
-    navigation.navigate("RestaurantDetail")
+  const goToRestaurant = (id: string) => {
+    navigation.navigate("RestaurantDetail", { id })
   }
 
   return (
     <View testID="RestaurantListScreen" style={FULL}>
       <Screen preset="fixed" statusBar="dark-content">
-        <View style={{ marginHorizontal: 20 }}>
+        {restaurants && (
+          <FlatList
+            data={restaurants}
 
-          {restaurants && (
-            <FlatList
-              data={restaurants}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => (
-                <Pressable onPress={() => goToRestaurant()}>
-                  <FastImage
-                    style={{ width: "100%", height: 200 }}
-                    source={{ uri: item.image }}
-                    resizeMode={FastImage.resizeMode.contain}
-                  />
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <Pressable
+                onPress={() => goToRestaurant(item.id)}
+                style={ITEM_CONTAINER}
+              >
+                <FastImage
+                  style={ITEM_IMAGE}
+                  source={{ uri: item.image }}
+                  resizeMode={FastImage.resizeMode.contain}
+                />
 
+                <View style={ITEM_TEXT_CONTAINER}>
                   <Text text={item.name} />
                   <Text text={item.type} />
-                </Pressable>
-              )}
-            />
-          )}
-        </View>
+                </View>
+              </Pressable>
+            )}
+          />
+        )}
       </Screen>
     </View>
   )
 }
+
+const FULL: ViewStyle = { flex: 1 }
+const ITEM_CONTAINER: ViewStyle = { width: "100%" }
+const ITEM_TEXT_CONTAINER: ViewStyle = { paddingLeft: 25 }
+const ITEM_IMAGE: ImageStyle = { width: "90%", height: 200, alignSelf: "center" }
