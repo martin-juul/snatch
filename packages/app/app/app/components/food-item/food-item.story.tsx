@@ -1,15 +1,15 @@
-import * as React from "react"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { color } from "../../theme"
-import { FoodItem } from "./food-item"
+import * as React from 'react';
+import {storiesOf} from '@storybook/react-native';
+import {StoryScreen, Story, UseCase} from '../../../storybook/views';
+import {color} from '../../theme';
+import {FoodItem} from './food-item';
 
-storiesOf("FoodItem", module)
-  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
-  .add("Style Presets", () => (
+storiesOf('FoodItem', module)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+  .add('Style Presets', () => (
     <Story>
       <UseCase text="Primary" usage="The primary.">
-        <FoodItem style={{ backgroundColor: color.error }} />
+        <FoodItem style={{backgroundColor: color.error}} />
       </UseCase>
     </Story>
-  ))
+  ));

@@ -1,10 +1,10 @@
-import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import {Instance, SnapshotOut, types} from 'mobx-state-tree';
 
 /**
  * Model description here for TypeScript hints.
  */
 export const FoodMenuItemModel = types
-  .model("FoodMenuItem")
+  .model('FoodMenuItem')
   .props({
     id: types.identifierNumber,
     restaurantId: types.identifierNumber,
@@ -13,8 +13,8 @@ export const FoodMenuItemModel = types
     image: types.maybe(types.string),
     price: types.maybe(types.number),
   })
-  .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
-  .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .views(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions(self => ({})); // eslint-disable-line @typescript-eslint/no-unused-vars
 
 /**
  * Un-comment the following to omit model attributes from your snapshots (and from async storage).
@@ -24,14 +24,13 @@ export const FoodMenuItemModel = types
  *  .postProcessSnapshot(omit(["password", "socialSecurityNumber", "creditCardNumber"]))
  */
 
-type FoodMenuItemType = Instance<typeof FoodMenuItemModel>
+type FoodMenuItemType = Instance<typeof FoodMenuItemModel>;
 
-export interface FoodMenuItem extends FoodMenuItemType {
-}
+export interface FoodMenuItem extends FoodMenuItemType {}
 
-type FoodMenuItemSnapshotType = SnapshotOut<typeof FoodMenuItemModel>
+type FoodMenuItemSnapshotType = SnapshotOut<typeof FoodMenuItemModel>;
 
-export interface FoodMenuItemSnapshot extends FoodMenuItemSnapshotType {
-}
+export interface FoodMenuItemSnapshot extends FoodMenuItemSnapshotType {}
 
-export const createFoodMenuItemDefaultModel = () => types.optional(FoodMenuItemModel, {})
+export const createFoodMenuItemDefaultModel = () =>
+  types.optional(FoodMenuItemModel, {});

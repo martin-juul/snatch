@@ -13,15 +13,14 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "config": {
         "googleMapsApiKey": "AIzaSyDGI99-EoCQzIgW5LLfG6JQiJE2YjJQKSI"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }

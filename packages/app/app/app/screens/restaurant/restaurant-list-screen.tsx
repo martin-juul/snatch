@@ -1,44 +1,43 @@
-import React, { useEffect } from 'react';
-import { observer } from "mobx-react-lite"
-import { FlatList, Pressable, View, ViewStyle } from 'react-native';
-import { Screen, Text } from '../../components';
-import { useNavigation } from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {observer} from 'mobx-react-lite';
+import {FlatList, Pressable, View, ViewStyle} from 'react-native';
+import {Screen, Text} from '../../components';
+import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
-import { useStores } from "../../models"
+import {useStores} from '../../models';
 
-const FULL: ViewStyle = { flex: 1 }
+const FULL: ViewStyle = {flex: 1};
 
 export const RestaurantListScreen = observer(() => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  const { restaurantStore } = useStores()
-  const { restaurants } = restaurantStore
+  const {restaurantStore} = useStores();
+  const {restaurants} = restaurantStore;
 
   useEffect(() => {
     async function fetchData() {
-      await restaurantStore.getRestaurants()
+      await restaurantStore.getRestaurants();
     }
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const goToRestaurant = () => {
-    navigation.navigate('RestaurantDetail')
-  }
+    navigation.navigate('RestaurantDetail');
+  };
 
   return (
     <View testID="RestaurantListScreen" style={FULL}>
       <Screen preset="fixed" statusBar="dark-content">
-
-        <View style={{ marginHorizontal: 20 }}>
+        <View style={{marginHorizontal: 20}}>
           <FlatList
             data={[...restaurants]}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) => (
               <Pressable onPress={() => goToRestaurant()}>
                 <FastImage
-                  style={{ width: "100%", height: 200 }}
-                  source={{ uri: item.image }}
+                  style={{width: '100%', height: 200}}
+                  source={{uri: item.image}}
                   resizeMode={FastImage.resizeMode.contain}
                 />
 
@@ -50,5 +49,5 @@ export const RestaurantListScreen = observer(() => {
         </View>
       </Screen>
     </View>
-  )
-})
+  );
+});

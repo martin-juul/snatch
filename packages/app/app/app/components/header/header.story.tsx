@@ -1,20 +1,20 @@
-import * as React from "react"
-import { View, Alert } from "react-native"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { Header } from "./header"
-import { color } from "../../theme"
+import * as React from 'react';
+import {View, Alert} from 'react-native';
+import {storiesOf} from '@storybook/react-native';
+import {StoryScreen, Story, UseCase} from '../../../storybook/views';
+import {Header} from './header';
+import {color} from '../../theme';
 
-declare let module
+declare let module;
 
 const VIEWSTYLE = {
   flex: 1,
   backgroundColor: color.storybookDarkBg,
-}
+};
 
-storiesOf("Header", module)
-  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
-  .add("Behavior", () => (
+storiesOf('Header', module)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
+  .add('Behavior', () => (
     <Story>
       <UseCase noPad text="default" usage="The default usage">
         <View style={VIEWSTYLE}>
@@ -26,7 +26,7 @@ storiesOf("Header", module)
           <Header
             headerTx="demoScreen.howTo"
             leftIcon="back"
-            onLeftPress={() => Alert.alert("left nav")}
+            onLeftPress={() => Alert.alert('left nav')}
           />
         </View>
       </UseCase>
@@ -35,9 +35,9 @@ storiesOf("Header", module)
           <Header
             headerTx="demoScreen.howTo"
             rightIcon="bullet"
-            onRightPress={() => Alert.alert("right nav")}
+            onRightPress={() => Alert.alert('right nav')}
           />
         </View>
       </UseCase>
     </Story>
-  ))
+  ));
