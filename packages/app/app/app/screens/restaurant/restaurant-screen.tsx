@@ -55,7 +55,7 @@ const FLAT_LIST: ViewStyle = {
 }
 export const RestaurantScreen = observer(() => {
   const navigation = useNavigation()
-  const goBack = () => navigation.goBack()
+  const goBack = () => navigation.navigate('restaurants')
 
   const [restaurant, setRestaurant] = useState<Restaurant>(MOCK_RESTAURANT)
   const [items, setItems] = useState<FoodMenuItem[]>([])
@@ -68,7 +68,6 @@ export const RestaurantScreen = observer(() => {
     <View testID="RestaurantScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" statusBar="dark-content">
         <Header
-          headerText="Restaurant"
           leftIcon="back"
           onLeftPress={goBack}
           style={HEADER}

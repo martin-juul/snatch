@@ -1,5 +1,14 @@
 # Work log
 
+## 23-08-2021
+
++ Wireframe
+  + Restaurant Screen
++ UI Prototyping
+  + Restaurants Screen
+  + Restaurant Detail Screen
+  + Restaurant Order Screen
+
 ## 20-08-2021
 
 + Documentation site

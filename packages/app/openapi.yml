@@ -39,7 +39,7 @@ paths:
               schema:
                 type: string
           content:
-            application/json:    
+            application/json:
               schema:
                 type: object
                 properties:
@@ -103,7 +103,7 @@ paths:
               schema:
                 type: string
           content:
-            application/json:    
+            application/json:
               schema:
                 type: object
                 properties:
@@ -136,31 +136,31 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
   /restaurants/food/{foodId}:
-      get:
-        summary: Info for a specific food item
-        operationId: showFoodById
-        tags:
-          - restaurants
-        parameters:
-          - name: foodId
-            in: path
-            required: true
-            description: The id of the food item to retrieve
-            schema:
-              type: string
-        responses:
-          '200':
-            description: Expected response to a valid request
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/FoodItem"
-          default:
-            description: unexpected error
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/Error"
+    get:
+      summary: Info for a specific food item
+      operationId: showFoodById
+      tags:
+        - restaurants
+      parameters:
+        - name: foodId
+          in: path
+          required: true
+          description: The id of the food item to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FoodItem"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /users:
     get:
       summary: List all users
@@ -193,7 +193,7 @@ paths:
               schema:
                 type: string
           content:
-            application/json:    
+            application/json:
               schema:
                 type: object
                 properties:
@@ -358,10 +358,10 @@ components:
           type: number
           description: decimal number
           example: 24.134
-          
+
     Role:
       type: string
-      oneOf: ["consumer", "business", "driver"]
+      oneOf: [ "consumer", "business", "driver" ]
     User:
       type: object
       required:
@@ -388,4 +388,4 @@ components:
           type: string
           example: "https://snatch.test/assets/image0.jpg"
         role:
-          $ref: "#/components/schemas/Role" 
+          $ref: "#/components/schemas/Role"

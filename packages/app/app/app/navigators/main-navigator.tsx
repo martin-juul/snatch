@@ -6,8 +6,7 @@
  */
 import * as React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { RestaurantScreen } from "../screens"
-import { RestaurantItemScreen } from "../screens/restaurant/restaurant-item-screen"
+import { RestaurantItemScreen, RestaurantListScreen, RestaurantScreen } from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -23,6 +22,7 @@ import { RestaurantItemScreen } from "../screens/restaurant/restaurant-item-scre
  */
 export type PrimaryParamList = {
   restaurant: undefined
+  restaurants: undefined
   restaurantItem: undefined
 }
 
@@ -36,6 +36,7 @@ export function MainNavigator() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="restaurants" component={RestaurantListScreen} />
       <Stack.Screen name="restaurant" component={RestaurantScreen} />
       <Stack.Screen name="restaurantItem" component={RestaurantItemScreen} />
     </Stack.Navigator>
@@ -51,5 +52,5 @@ export function MainNavigator() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ["restaurant"]
+const exitRoutes = ["restaurants"]
 export const canExit = (routeName: string) => exitRoutes.includes(routeName)
