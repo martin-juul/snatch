@@ -330,10 +330,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - **restaurants:** added test api & mobx
   integration ([c413295](https://github.com/martin-juul/snatch/commit/c413295534581c2dcba04665e38a7052a762308d))
 
-Sprint Review Frontend
-
-Backend
-
-Konklusion
-
 
