@@ -4,16 +4,17 @@ import { RestaurantsNavigator } from "./restaurant"
 import { OrderNavigator } from "./order"
 import Feather from "react-native-vector-icons/Feather"
 import { Pressable } from "react-native"
+import { ProfileNavigator } from "./profile/profile-navigator"
 
 export enum MainRoute {
+  Profile = "Profile",
   Restaurants = "Restaurants",
-  OrderTracking = "OrderTracking",
   Orders = "Orders",
 }
 
 export type MainParamList = {
+  [MainRoute.Profile]: undefined
   [MainRoute.Restaurants]: undefined
-  [MainRoute.OrderTracking]: undefined
   [MainRoute.Orders]: undefined
 }
 
@@ -27,6 +28,9 @@ export const MainNavigator = () => (
         let iconName: string
 
         switch (route.name) {
+          case MainRoute.Profile:
+            iconName = "user"
+            break
           case MainRoute.Orders:
             iconName = "list"
             break
@@ -48,6 +52,7 @@ export const MainNavigator = () => (
   >
     <Screen name={MainRoute.Restaurants} component={RestaurantsNavigator} />
     <Screen name={MainRoute.Orders} component={OrderNavigator} />
+    <Screen name={MainRoute.Profile} component={ProfileNavigator} />
   </Navigator>
 )
 

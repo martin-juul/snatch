@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react"
-import { FlatList, Pressable, TextStyle, ViewStyle } from "react-native"
-import { Card, View } from "react-native-ui-lib"
+import { FlatList, TextStyle, ViewStyle } from "react-native"
+import { Card, SkeletonView, View } from "react-native-ui-lib"
 import firestore from "@react-native-firebase/firestore"
 import { Collection, RestaurantMenuItem, RestaurantModel } from "../../firestore/collections"
-import { Header, Screen, Text } from "../../components"
+import { Screen, Text } from "../../components"
 import { color, spacing } from "../../theme"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 import { useLanguage } from "../../contexts/language"
-import { RestaurantBasket } from "./restaurant-basket"
+import { RestaurantMiniBasket } from "./restaurant-mini-basket"
 
 interface Props extends RestaurantProps<RestaurantRoute.Detail> {
 }
 
 export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
+  const [isLoaded, setIsLoaded] = useState(false)
   const [restaurant, setRestaurant] = useState<RestaurantModel>()
   const [menuItems, setMenuItems] = useState<RestaurantMenuItem[]>()
   const { currentLanguage } = useLanguage()
@@ -55,11 +56,17 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
     }
   }, [restaurant])
 
+  useEffect(() => {
+    if (menuItems) {
+      setIsLoaded(true)
+    }
+  }, [menuItems])
+
   const goToItem = (itemId: string) => {
     navigation.navigate(RestaurantRoute.Item, { restaurantId: restaurant.id, itemId })
   }
 
-  const renderItem = ({ item }) => (
+  const renderItem = (item: RestaurantMenuItem) => (
     <Card style={{ marginTop: 10, padding: 5 }} onPress={() => goToItem(item.id)}>
       <Text style={LIST_TEXT}>{item.name}</Text>
 
@@ -73,36 +80,39 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
   )
 
   return (
-    <View testID="RestaurantDetailScreen" style={FULL}>
-      <Screen style={CONTAINER} preset="fixed" statusBar="dark-content">
-        <Header leftIcon="back" onLeftPress={() => navigation.goBack()} style={HEADER} titleStyle={HEADER_TITLE} />
+    <Screen style={ROOT} preset="fixed" statusBar="dark-content">
 
-        {restaurant && (
-          <View style={RESTAURANT_CONTAINER}>
-            <Text preset="header" text={restaurant.name} />
+      <SkeletonView
+        showContent={isLoaded}
+        renderContent={() => (
+          <>
+            <View style={RESTAURANT_CONTAINER}>
+              <Text preset="header" text={restaurant.name} />
 
-            <View style={RESTAURANT_TYPE_CONTAINER}>
-              <Text text={restaurant.type} preset="fieldLabel" />
+              <View style={RESTAURANT_TYPE_CONTAINER}>
+                <Text text={restaurant.type} preset="fieldLabel" />
+              </View>
             </View>
-          </View>
-        )}
 
-        {menuItems && (
-          <FlatList
-            contentContainerStyle={FLAT_LIST}
-            data={[...menuItems]}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={renderItem}
-          />
+            <FlatList<RestaurantMenuItem>
+              contentContainerStyle={FLAT_LIST}
+              data={[...menuItems]}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => renderItem(item)}
+            />
+          </>
         )}
+      />
 
-        <RestaurantBasket />
-      </Screen>
-    </View>
+      <RestaurantMiniBasket />
+    </Screen>
   )
 }
 
-const FULL: ViewStyle = { flex: 1 }
+const ROOT: ViewStyle = {
+  flex: 1,
+  backgroundColor: color.background,
+}
 
 const HEADER: TextStyle = {
   paddingBottom: spacing[5] - 1,
@@ -115,10 +125,6 @@ const HEADER_TITLE: TextStyle = {
   letterSpacing: 1.5,
   lineHeight: 15,
   textAlign: "center",
-}
-
-const CONTAINER: ViewStyle = {
-  backgroundColor: color.background,
 }
 
 const RESTAURANT_CONTAINER: ViewStyle = {

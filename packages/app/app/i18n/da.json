@@ -4,7 +4,8 @@
     "price": "Pris",
     "ok": "Ok",
     "cancel": "Annuller",
-    "back": "Tilbage"
+    "back": "Tilbage",
+    "save": "Gem"
   },
   "addToBasket": "Tilføj til kurv",
   "signIn": "Log ind",
