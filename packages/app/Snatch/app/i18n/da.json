@@ -1,0 +1,16 @@
+{
+  "common": {
+    "buy": "Køb",
+    "price": "Pris",
+    "ok": "OK!",
+    "cancel": "Cancel",
+    "back": "Back"
+  },
+  "errors": {
+    "invalidEmail": "Invalid email address."
+  },
+  "storybook": {
+    "placeholder": "Placeholder",
+    "field": "Field"
+  }
+}

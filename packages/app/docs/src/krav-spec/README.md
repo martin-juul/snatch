@@ -5,7 +5,7 @@ sidebar: auto
 # Kravspecifikation - Snatch
 ## Martin og Danny
 
-## 1.  Formål
+## 1. Formål
 
 ## 2. Baggrund
 
@@ -43,7 +43,6 @@ Dette er en gratis løsning som er populær indenfor mobil apps. Her bruges push
 #### Google Maps SDK
 Til visning af kort, er valget faldet på Google Maps. Applikationen skal være så ens, som muligt, på hver platform. Her er Google Maps oplagt, da Google selv står for udviklingen. Samt bliver kortene opdateret ofte. På den måde undgås det at vise uddaterede kort.
 
-## 3.5 Konsekvenser for Organisationen
 ## 3.6 Krav til Implementering
 ## 3.7 Målgruppe
 Der findes 3 konkrete målgrupper på Snatch platformen.
@@ -55,6 +54,12 @@ Kunder - Køber madvare hos restauranter, og køber yderligere levering fra Bude
 ## 4. Funktionelle Krav
 
 ### 4.2 User Interface Wireframes
+
+<img src="./screen-restaurant.png" style="zoom:50%;" />
+
+
+
+<img src="./screen-order-tracking.png" alt="Screen Order Tracking" style="zoom:50%;" />
 
 ### 4.3 Tidslinje
 

@@ -1,13 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {observer} from 'mobx-react-lite';
-import {Dimensions, Platform, View, ViewStyle} from 'react-native';
+import {Dimensions, View, ViewStyle} from 'react-native';
 import {Header, Screen, Text} from '../../components';
 import MapView, {Marker, PROVIDER_GOOGLE, Region} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {color} from '../../theme';
 import Scooter from './scooter.svg';
 import Config from 'react-native-config';
-import {PERMISSIONS, request, requestMultiple} from 'react-native-permissions';
+import {PERMISSIONS, request} from 'react-native-permissions';
+// import firestore, {
+//   FirebaseFirestoreTypes,
+// } from '@react-native-firebase/firestore';
+// import {DriverAttributes} from '../../models/firebase/driver';
 
 const ROOT: ViewStyle = {
   flex: 1,
@@ -22,12 +26,8 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
-  const [hasLocationPermission, setHasLocationPermission] = useState(false);
-
   useEffect(() => {
-    request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(r => {
-      setHasLocationPermission(r === 'granted');
-    });
+    request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
   }, []);
 
   const [destination, setDestination] = useState({
@@ -42,10 +42,27 @@ export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
     longitude: 10.3933488,
   });
 
+  const [driverId, setDriverId] = useState('1');
   const [driverPosition, setDriverPosition] = useState({
     latitude: 55.40969,
     longitude: 10.39408,
   });
+
+  // useEffect(() => {
+  //   const subscription = firestore()
+  //     .collection<DriverAttributes>('drivers')
+  //     .doc(driverId)
+  //     .onSnapshot(snapshot => {
+  //       const points =
+  //         snapshot.get<FirebaseFirestoreTypes.GeoPoint[]>('geopoints');
+  //       setDriverPosition(points[points.length - 1]);
+  //     });
+//
+  //   return () => {
+  //     // unsubscribe
+  //     subscription();
+  //   };
+  // }, [driverId]);
 
   const [viewRegion, setViewRegion] = useState(destination);
 
@@ -56,21 +73,19 @@ export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
   const STROKE_COLOR = color.palette.green;
   const mapViewRef = useRef<MapViewDirections>();
 
-  if (!hasLocationPermission) {
-    return <Text>You have not enabled the location permission</Text>;
-  }
-
   return (
-    <Screen style={ROOT} preset="scroll">
+    <Screen testID="OrderTrackingScreen" style={ROOT} preset="scroll">
       <Header headerText="Order" />
 
       <MapView
         userLocationPriority="high"
         provider={PROVIDER_GOOGLE}
         onRegionChange={onRegionChange}
-        showsBuildings={true}
-        showsScale={true}
-        showsMyLocationButton={true}
+        cacheEnabled
+        showsBuildings
+        showsScale
+        showsUserLocation
+        showsMyLocationButton
         initialRegion={{
           latitude: destination.latitude,
           longitude: destination.longitude,
@@ -81,7 +96,7 @@ export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
           flex: 1,
         }}>
         <MapViewDirections
-          apikey={Config.GOOGLE_MAPS_DIRECTIONS_API_KEY}
+          apikey="AIzaSyBaJ0UeOoHDtDg8zKNz0q9Cc19N_HuCz4s"
           origin={origin}
           destination={destination}
           strokeWidth={4}
