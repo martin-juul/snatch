@@ -114,19 +114,6 @@ const ROOT: ViewStyle = {
   backgroundColor: color.background,
 }
 
-const HEADER: TextStyle = {
-  paddingBottom: spacing[5] - 1,
-  paddingHorizontal: spacing[4],
-  paddingTop: spacing[3],
-}
-const HEADER_TITLE: TextStyle = {
-  fontSize: 12,
-  fontWeight: "bold",
-  letterSpacing: 1.5,
-  lineHeight: 15,
-  textAlign: "center",
-}
-
 const RESTAURANT_CONTAINER: ViewStyle = {
   paddingHorizontal: 20,
 }
@@ -138,12 +125,6 @@ const RESTAURANT_TYPE_CONTAINER: ViewStyle = {
 const LIST_ITEM_TEXT_CONTAINER: ViewStyle = {
   flexDirection: "column",
 }
-
-// const IMAGE: ImageStyle = {
-//   borderRadius: 35,
-//   height: 65,
-//   width: 65,
-// }
 
 const LIST_TEXT: TextStyle = {
   fontWeight: "600",

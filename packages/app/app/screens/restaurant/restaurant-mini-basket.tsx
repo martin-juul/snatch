@@ -19,7 +19,7 @@ export const RestaurantMiniBasket = () => {
     let qty = 0
 
     for (const item of basket.items) {
-      price += item.price * item.quantity
+      price += item.itemPrice * item.quantity
       qty += item.quantity
     }
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button, Screen, Text } from "../../components"
 import { View } from "react-native-ui-lib"
 import { TextStyle, ViewStyle } from "react-native"
@@ -34,7 +34,7 @@ export const RestaurantItemScreen = ({ route, navigation }: Props) => {
     fetchData()
   }, [])
 
-  const addItem = () => {
+  const addItem = async () => {
     if (!basket.restaurantId) {
       dispatch(setBasketRestaurantId(route.params.restaurantId))
     }
@@ -46,11 +46,9 @@ export const RestaurantItemScreen = ({ route, navigation }: Props) => {
     }
 
     const model: OrderItemModel = {
-      id: item.id,
       name: item.name,
-      image: item.image,
-      price: item.price,
-      productCode: item.productCode,
+      itemRef: item.id,
+      itemPrice: item.price,
       quantity,
     }
 

@@ -3,30 +3,60 @@ import { Button, Screen, Text } from "../../components"
 import { FlatList, StyleSheet, TextStyle, ViewStyle } from "react-native"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 import { useAppDispatch, useAppSelector } from "../../store"
-import { OrderItemModel } from "../../firestore/collections"
+import { OrderItemModel, OrderModel } from "../../firestore/collections"
 import { Card, View } from "react-native-ui-lib"
 import NumericInput from "rn-numeric-input"
-import { updateBasketItemQuantity } from "../../store/basket"
+import { clearBasket, removeItemFromBasket, updateBasketItemQuantity } from "../../store/basket"
 import { color } from "../../theme"
+import firestore, { FirebaseFirestoreTypes } from "@react-native-firebase/firestore"
+import { useUser } from "../../contexts/user"
+import { OrderRoute } from "../../navigators/order"
 
 export interface Props extends RestaurantProps<RestaurantRoute.Basket> {
-
 }
 
 export const RestaurantBasketScreen = ({ route, navigation }: Props) => {
   const dispatch = useAppDispatch()
   const basket = useAppSelector(state => state.basket)
+  const { customer } = useUser()
   const [totalPrice, setTotalPrice] = useState("0")
 
   useEffect(() => {
     let price = 0
 
     for (const item of basket.items) {
-      price += item.price * item.quantity
+      price += item.itemPrice * item.quantity
     }
 
     setTotalPrice((price / 100).toFixed(2).replace(".", ","))
   }, [basket.items])
+
+  const onBuy = async () => {
+    const fbCustomer = await firestore().doc(`/customers/${customer.id}/`).get()
+    const restaurant = await firestore().doc(`/restaurant/${basket.restaurantId}/`).get()
+
+    if (!fbCustomer.exists || !restaurant.exists) {
+      throw new Error("Something went wrong")
+    }
+
+    const order: OrderModel = {
+      customerId: fbCustomer.ref,
+      restaurantId: restaurant.ref,
+      items: basket.items,
+      status: "pending",
+      deliveryDistance: 10000,
+      deliveryFee: 2900,
+      deliveryLocation: customer.location,
+      createdAt: FirebaseFirestoreTypes.Timestamp.fromDate(new Date()),
+    }
+
+    firestore().collection<OrderModel>("orders").add(order)
+      .then(() => {
+        dispatch(clearBasket())
+        navigation.navigate(OrderRoute.List)
+      })
+      .catch(console.error)
+  }
 
   const renderRow = (item: OrderItemModel) => (
     <View style={ROW}>
@@ -39,13 +69,28 @@ export const RestaurantBasketScreen = ({ route, navigation }: Props) => {
           totalHeight={32}
           rounded
           value={item.quantity}
-          onChange={value => dispatch(updateBasketItemQuantity({ id: item.id, quantity: value }))}
+          onChange={value => {
+            if (value > 0) {
+              dispatch(updateBasketItemQuantity({ itemRef: item.itemRef, quantity: value }))
+            } else {
+              dispatch(removeItemFromBasket(item.itemRef))
+            }
+          }}
           maxValue={10}
         />
       </View>
 
       <View>
-        <Text text={((item.price * item.quantity) / 100).toFixed(2).replace(".", ",") + "kr."} />
+        <Text text={((item.itemPrice * item.quantity) / 100).toFixed(2).replace(".", ",") + "kr."} />
+      </View>
+
+      <View>
+        <Button
+          onPress={() => dispatch(removeItemFromBasket(item.itemRef))}
+          text="X"
+          preset="link"
+          textStyle={{ color: color.palette.angry }}
+        />
       </View>
     </View>
   )
@@ -56,7 +101,7 @@ export const RestaurantBasketScreen = ({ route, navigation }: Props) => {
       <FlatList<OrderItemModel>
         data={basket.items}
         renderItem={({ item }) => renderRow(item)}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.itemRef}
       />
 
       <Card
@@ -66,6 +111,7 @@ export const RestaurantBasketScreen = ({ route, navigation }: Props) => {
 
         <Button
           tx="common.buy"
+          onPress={onBuy}
         />
       </Card>
 

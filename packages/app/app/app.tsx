@@ -12,6 +12,7 @@ import { LanguageProvider } from "./contexts/language"
 import { bootstrap } from "./bootstrap"
 import { Text } from "./components"
 import { AuthProvider } from "./contexts/auth"
+import { UserProvider } from "./contexts/user"
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -44,17 +45,19 @@ function App() {
   return (
     <LanguageProvider>
       <AuthProvider>
-        <Provider store={store}>
-          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-            <PermissionsProvider>
-              <RootNavigator
-                ref={navigationRef}
-                initialState={initialNavigationState}
-                onStateChange={onNavigationStateChange}
-              />
-            </PermissionsProvider>
-          </SafeAreaProvider>
-        </Provider>
+        <UserProvider>
+          <Provider store={store}>
+            <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+              <PermissionsProvider>
+                <RootNavigator
+                  ref={navigationRef}
+                  initialState={initialNavigationState}
+                  onStateChange={onNavigationStateChange}
+                />
+              </PermissionsProvider>
+            </SafeAreaProvider>
+          </Provider>
+        </UserProvider>
       </AuthProvider>
     </LanguageProvider>
   )
