@@ -32,12 +32,12 @@ function App() {
       //  await initFonts()
       await bootstrap()
 
-      setIsLoading(true)
+      setIsLoading(false)
     })()
   }, [])
 
   if (isLoading) {
-    <Text>Loading...</Text>
+    return <Text>Loading...</Text>
   }
 
   // otherwise, we're ready to render the app
