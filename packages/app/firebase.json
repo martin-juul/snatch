@@ -27,5 +27,8 @@
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"
+  },
+  "react-native": {
+    "app_data_collection_default_enabled": true
   }
 }
