@@ -26,14 +26,18 @@ const basket = createSlice({
       state.restaurantId = action.payload
     },
     addItemToBasket: (state, action: PayloadAction<OrderItemModel>) => {
-      state.items.push(action.payload)
+      if (state.items.findIndex(x => x.itemRef === action.payload.itemRef) > 0) {
+        updateBasketItemQuantity({ itemRef: action.payload.itemRef, quantity: action.payload.quantity })
+      } else {
+        state.items.push(action.payload)
+      }
     },
-    updateBasketItemQuantity: (state, action: PayloadAction<{ id: string, quantity: number }>) => {
-      const idx = state.items.findIndex(x => x.id === action.payload.id)
+    updateBasketItemQuantity: (state, action: PayloadAction<{ itemRef: string, quantity: number }>) => {
+      const idx = state.items.findIndex(x => x.itemRef === action.payload.itemRef)
       state.items[idx].quantity = action.payload.quantity
     },
     removeItemFromBasket: (state, action: PayloadAction<string>) => {
-      state.items.splice(state.items.findIndex(x => x.id === action.payload), 1)
+      state.items.splice(state.items.findIndex(x => x.itemRef === action.payload), 1)
     },
     setDeliveryLocation: (state, action: PayloadAction<{ latitude: number, longitude: number }>) => {
       state.deliveryLocation = action.payload
