@@ -18,7 +18,6 @@ paths:
           in: query
           description: Which page to fetch
           required: false
-          default: 1
           schema:
             type: integer
             format: int32
@@ -26,7 +25,6 @@ paths:
           in: query
           description: How many items to return at one time
           required: false
-          default: 30
           schema:
             type: integer
             format: int32
@@ -82,7 +80,6 @@ paths:
           in: query
           description: Which page to fetch
           required: false
-          default: 1
           schema:
             type: integer
             format: int32
@@ -90,7 +87,6 @@ paths:
           in: query
           description: How many items to return at one time
           required: false
-          default: 30
           schema:
             type: integer
             format: int32
@@ -172,7 +168,6 @@ paths:
           in: query
           description: Which page to fetch
           required: false
-          default: 1
           schema:
             type: integer
             format: int32
@@ -180,7 +175,6 @@ paths:
           in: query
           description: How many items to return at one time
           required: false
-          default: 30
           schema:
             type: integer
             format: int32
@@ -256,6 +250,13 @@ paths:
       operationId: updateUser
       tags:
         - users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the user to retrieve
+          schema:
+            type: string
       responses:
         '200':
           description: Updated successfully
@@ -274,6 +275,13 @@ paths:
       operationId: deleteUser
       tags:
         - users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the user to retrieve
+          schema:
+            type: string
       responses:
         '201':
           description: User deactivated
@@ -313,8 +321,6 @@ components:
           format: int64
         name:
           type: string
-          min: 3
-          max: 260
         rating:
           type: number
           example: 4.5
@@ -326,8 +332,6 @@ components:
           type: string
         countryCode:
           type: string
-          min: 2
-          max: 2
           example: 'DK'
         location:
           $ref: "#/components/schemas/Location"
@@ -361,7 +365,7 @@ components:
 
     Role:
       type: string
-      oneOf: [ "consumer", "business", "driver" ]
+      description: "one of consumer, business, driver"
     User:
       type: object
       required:
@@ -378,12 +382,8 @@ components:
           format: int64
         name:
           type: string
-          min: 3
-          max: 260
         email:
           type: string
-          min: 5
-          max: 254
         imageUrl:
           type: string
           example: "https://snatch.test/assets/image0.jpg"
