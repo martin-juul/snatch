@@ -5,7 +5,12 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
  */
 export const RestaurantModel = types
   .model("Restaurant")
-  .props({})
+  .props({
+    id: types.identifierNumber,
+    name: types.string,
+    image: types.string,
+    description: types.string,
+  })
   .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
 

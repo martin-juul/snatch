@@ -36,12 +36,6 @@ export const RestaurantItemScreen = observer(() => {
   return (
     <View testID="RestaurantItemScreen" style={FULL}>
       <Screen statusBar="dark-content" style={{ alignItems: "center" }}>
-        <Header
-          headerText={restaurant.name}
-          leftIcon="back"
-          onLeftPress={goBack}
-        />
-
         <FastImage source={{ uri: item.image }} style={IMAGE} />
 
         <View style={{ alignItems: 'flex-start' }}>

@@ -15,6 +15,7 @@ export const RestaurantStoreModel = types
   .extend(withEnvironment)
   .actions((self) => ({
     saveRestaurants: (snapshots: RestaurantSnapshot[]) => {
+      console.log('snapshots', snapshots)
       self.restaurants.replace(snapshots)
     },
   }))
@@ -24,6 +25,7 @@ export const RestaurantStoreModel = types
       const result = await snatchApi.getRestaurants()
 
       if (result.kind === "ok") {
+        console.log(result)
         self.saveRestaurants(result.restaurants)
       } else {
         __DEV__ && console.tron.log(result.kind)

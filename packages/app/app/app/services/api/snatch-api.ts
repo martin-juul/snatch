@@ -4,7 +4,7 @@ import { GetFoodItemsResult, GetRestaurantsResult } from "./api.types"
 import { getGeneralApiProblem } from "./api-problem"
 
 const API_PAGE_SIZE = 30
-const BASE_URL = "https://mock.test/api"
+const BASE_URL = "http://localhost:3000"
 
 export class SnatchApi {
   private api: Api
@@ -23,7 +23,7 @@ export class SnatchApi {
         if (problem) return problem
       }
 
-      const restaurants = response.data.data
+      const restaurants = response.data
 
       return { kind: "ok", restaurants }
     } catch (e) {
@@ -32,10 +32,10 @@ export class SnatchApi {
     }
   }
 
-  async getFoodItems(restaurantId: number): Promise<GetFoodItemsResult> {
+  async getFood(restaurantId: number): Promise<GetFoodItemsResult> {
     try {
       const response: ApiResponse<any> = await this.api.apisauce.get(
-        `/restaurants/${restaurantId}/items`,
+        `/restaurants/${restaurantId}/food`,
         { perPage: API_PAGE_SIZE },
       )
 
@@ -44,7 +44,7 @@ export class SnatchApi {
         if (problem) return problem
       }
 
-      const items = response.data.data
+      const items = response.data
 
       return { kind: "ok", items }
     } catch (e) {

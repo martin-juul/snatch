@@ -1,36 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { observer } from "mobx-react-lite"
 import { FlatList, Pressable, View, ViewStyle } from 'react-native';
-import { Header, Screen, Text } from '../../components';
-import { MOCK_RESTAURANTS, Restaurant } from './mock';
+import { Screen, Text } from '../../components';
 import { useNavigation } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
+import { useStores } from "../../models"
 
 const FULL: ViewStyle = { flex: 1 }
 
 export const RestaurantListScreen = observer(() => {
   const navigation = useNavigation()
 
-  const [items, setItems] = useState<Restaurant[]>([])
+  const { restaurantStore } = useStores()
+  const { restaurants } = restaurantStore
 
   useEffect(() => {
-    setItems(MOCK_RESTAURANTS)
+    async function fetchData() {
+      await restaurantStore.getRestaurants()
+    }
+
+    fetchData()
   }, [])
 
   const goToRestaurant = () => {
-    navigation.navigate('restaurant')
+    navigation.navigate('RestaurantDetail')
   }
 
   return (
     <View testID="RestaurantListScreen" style={FULL}>
       <Screen preset="fixed" statusBar="dark-content">
-        <Header
-          headerText="Restaurants"
-        />
 
-        <View style={{ marginHorizontal: 20, marginBottom: 100 }}>
+        <View style={{ marginHorizontal: 20 }}>
           <FlatList
-            data={[...items]}
+            data={[...restaurants]}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <Pressable onPress={() => goToRestaurant()}>

@@ -55,7 +55,7 @@ const FLAT_LIST: ViewStyle = {
 }
 export const RestaurantScreen = observer(() => {
   const navigation = useNavigation()
-  const goBack = () => navigation.navigate('restaurants')
+  const goBack = () => navigation.goBack()
 
   const [restaurant, setRestaurant] = useState<Restaurant>(MOCK_RESTAURANT)
   const [items, setItems] = useState<FoodMenuItem[]>([])
@@ -98,7 +98,7 @@ export const RestaurantScreen = observer(() => {
           data={[...items]}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (
-            <Pressable onPress={() => navigation.navigate('restaurantItem')}>
+            <Pressable onPress={() => navigation.navigate('RestaurantOrder')}>
               <View style={LIST_CONTAINER}>
                 <FastImage source={{ uri: item.image }} style={IMAGE} />
 
