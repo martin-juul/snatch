@@ -1,0 +1,13 @@
+.env
+npm-debug.*
+.idea
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+node_modules/
+npm-debug.log
+yarn-error.log
+.DS_Store
