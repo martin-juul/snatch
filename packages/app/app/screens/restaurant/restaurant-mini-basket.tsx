@@ -4,8 +4,12 @@ import { useAppSelector } from "../../store"
 import { Text } from "../../components"
 import { ViewStyle } from "react-native"
 import Fontisto from "react-native-vector-icons/Fontisto"
+import { useNavigation } from "@react-navigation/native"
+import { RestaurantRoute } from "../../navigators/restaurant"
 
 export const RestaurantMiniBasket = () => {
+  const navigation = useNavigation()
+
   const basket = useAppSelector(state => state.basket)
   const [quantity, setQuantity] = useState(0)
   const [totalPrice, setTotalPrice] = useState("0")
@@ -21,7 +25,7 @@ export const RestaurantMiniBasket = () => {
 
     setTotalPrice((price / 100).toFixed(2).replace(".", ","))
     setQuantity(qty)
-  }, [basket.items.length])
+  }, [basket.items])
 
   if (basket.items.length < 1) {
     return null
@@ -32,6 +36,7 @@ export const RestaurantMiniBasket = () => {
       style={ROOT}
       row
       enableShadow
+      onPress={() => navigation.navigate(RestaurantRoute.Basket)}
     >
       <View style={{ flexDirection: "row" }}>
         <Fontisto name="shopping-basket" size={24} />

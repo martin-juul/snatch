@@ -1,12 +1,18 @@
 import React from "react"
 import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack"
 import { RouteProp } from "@react-navigation/native"
-import { RestaurantItemScreen, RestaurantListScreen, RestaurantDetailScreen } from "../../screens"
+import {
+  RestaurantBasketScreen,
+  RestaurantItemScreen,
+  RestaurantListScreen,
+  RestaurantDetailScreen,
+} from "../../screens"
 
 export enum RestaurantRoute {
   List = "List",
   Detail = "Detail",
   Item = "Item",
+  Basket = "Basket"
 }
 
 export type RestaurantParamList = {
@@ -18,6 +24,7 @@ export type RestaurantParamList = {
     restaurantId: string
     itemId: string
   }
+  [RestaurantRoute.Basket]: undefined
 }
 
 export type RestaurantNavigationProp<RouteName extends keyof RestaurantParamList> = StackNavigationProp<RestaurantParamList, RouteName>
@@ -45,6 +52,10 @@ export const RestaurantsNavigator = () => (
     <RestaurantStack.Screen
       name={RestaurantRoute.Item}
       component={RestaurantItemScreen}
+    />
+    <RestaurantStack.Screen
+      name={RestaurantRoute.Basket}
+      component={RestaurantBasketScreen}
     />
   </RestaurantStack.Navigator>
 )
