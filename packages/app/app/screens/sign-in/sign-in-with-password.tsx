@@ -6,7 +6,7 @@ import * as yup from "yup"
 import { TextInput, TextStyle, ViewStyle } from "react-native"
 import { Button, Text } from "../../components"
 import { useAuth } from "../../contexts/auth"
-import { AuthError } from "../../contexts/auth/auth-error"
+import { AuthError } from "../../errors/auth-error"
 import { translate } from "../../i18n"
 import { color, spacing } from "../../theme"
 
