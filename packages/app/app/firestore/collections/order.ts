@@ -1,10 +1,7 @@
 export interface OrderItemModel {
-  id: string
-  name: string
-  image?: string
-  price: number
+  itemRef: string
+  itemPrice: number
   options?: { [key: string]: string }
-  productCode: string
   quantity: number
 }
 
@@ -12,13 +9,18 @@ export type OrderStatus = "driver_lookup" | "preparing" | "driver_pickup" | "del
 
 export interface OrderModel {
   id: string
+  // Ref: /customers/:id
+  customerId: string
+  // Ref: /drivers/:id
+  driverId: string
+  // Ref: /restaurants/:id
   restaurantId: string
   status: OrderStatus
   items: OrderItemModel[]
-  driverId: string
   deliveryFee: number
+  // defined in meters
   deliveryDistance: number
   deliveryLocation: { latitude: number, longitude: number }
-  deliveredAt: Date
+  deliveredAt?: Date
   createdAt: Date
 }
