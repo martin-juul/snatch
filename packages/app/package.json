@@ -1,7 +1,9 @@
 {
   "name": "snatch",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
+  "author": "Martin Juul <code@juul.xyz>",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "react-native start",
     "test:e2e": "detox test -c ios.sim.debug",
