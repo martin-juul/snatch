@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react"
-import { FlatList, Pressable, ViewStyle } from "react-native"
+import React, { useCallback, useEffect, useState } from "react"
+import { FlatList, ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
-import FastImage from "react-native-fast-image"
 import { OrderProps, OrderRoute } from "../../navigators/order"
 import { OrderModel } from "../../firestore/collections"
-import firestore from "@react-native-firebase/firestore"
+import firestore, { FirebaseFirestoreTypes } from "@react-native-firebase/firestore"
 import { useUser } from "../../contexts/user"
-import { Customer } from "../../firestore/collections/customer"
+import { findCustomerById } from "../../firestore/collections/customer"
 import { Card, View } from "react-native-ui-lib"
-
-const ROOT: ViewStyle = {
-  flex: 1,
-}
 
 interface Props extends OrderProps<OrderRoute.List> {
 }
@@ -20,14 +15,12 @@ export const OrdersScreen = ({ navigation }: Props) => {
   const user = useUser()
   const [orders, setOrders] = useState<OrderModel[]>([])
 
-  useEffect(() => {
+  const refresh = useCallback(() => {
     async function fetchData() {
-      const customer = await firestore().doc<Customer>(`/customers/${user.customer.id}/`).get()
+      const customer = await findCustomerById(user.customer.id)
 
       const res = await firestore().collection<OrderModel>("/orders/").where("customerId", "==", customer.ref).get()
       const items: OrderModel[] = []
-
-      console.log(user.customer.id)
 
       for (const item of res.docs) {
         items.push({
@@ -42,6 +35,10 @@ export const OrdersScreen = ({ navigation }: Props) => {
     if (user.customer) {
       fetchData()
     }
+  }, [user.customer.id])
+
+  useEffect(() => {
+    refresh()
   }, [])
 
   return (
@@ -50,15 +47,22 @@ export const OrdersScreen = ({ navigation }: Props) => {
         <FlatList
           keyExtractor={(item) => item.id.toString()}
           data={[...orders]}
-          contentContainerStyle={{ height: "100%", marginHorizontal: 10 }}
+          contentContainerStyle={LIST_CONTAINER}
           renderItem={({ item }) => (
             <Card
-              style={{ flexDirection: "row", paddingVertical: 25, paddingHorizontal: 10 }}
-              onPress={() => navigation.navigate(OrderRoute.Tracking, { id: item.id })}
+              style={CARD}
+              onPress={() => navigation.navigate(OrderRoute.Tracking, {
+                orderId: item.id,
+                customerId: user.customer.id,
+              })}
             >
               <View>
                 <Text text={`ID: #${item.id}`} />
-                <Text text={item.createdAt.toDate().toLocaleTimeString()} />
+              </View>
+
+              <View style={CARD_DATE}>
+                <Text text={(item.createdAt as FirebaseFirestoreTypes.Timestamp).toDate().toLocaleDateString()} />
+                <Text text={(item.createdAt as FirebaseFirestoreTypes.Timestamp).toDate().toLocaleTimeString()} />
               </View>
             </Card>
           )}
@@ -66,4 +70,24 @@ export const OrdersScreen = ({ navigation }: Props) => {
       </View>
     </Screen>
   )
+}
+
+const ROOT: ViewStyle = {
+  flex: 1,
+}
+
+const LIST_CONTAINER: ViewStyle = {
+  height: "100%",
+  marginHorizontal: 10,
+}
+
+const CARD: ViewStyle = {
+  marginTop: 10,
+  paddingHorizontal: 10,
+  paddingVertical: 25,
+}
+
+const CARD_DATE: ViewStyle = {
+  flexDirection: "row",
+  justifyContent: "space-between",
 }

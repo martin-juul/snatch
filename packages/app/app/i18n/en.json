@@ -2,6 +2,7 @@
   "common": {
     "buy": "Buy",
     "price": "Price",
+    "loading": "Loading",
     "ok": "Ok",
     "cancel": "Cancel",
     "back": "Back",
@@ -22,6 +23,7 @@
     "language": "Language"
   },
   "errors": {
-    "invalidEmail": "Invalid email address."
+    "invalidEmail": "Invalid email address.",
+    "notFound": "does not exist"
   }
 }

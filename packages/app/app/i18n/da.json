@@ -3,6 +3,7 @@
     "buy": "Køb",
     "price": "Pris",
     "ok": "Ok",
+    "loading": "Indlæser",
     "cancel": "Annuller",
     "back": "Tilbage",
     "save": "Gem"
@@ -22,6 +23,7 @@
     "language": "Sprog"
   },
   "errors": {
-    "invalidEmail": "Ugyldig email adresse"
+    "invalidEmail": "Ugyldig email adresse",
+    "notFound": "findes ikke"
   }
 }
