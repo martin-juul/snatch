@@ -1,17 +1,35 @@
 import React from "react"
-import { createStackNavigator } from "@react-navigation/stack"
-import { OrderDetailScreen, OrdersScreen } from "../../screens"
+import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack"
+import { OrderDetailScreen, OrdersScreen, OrderTrackingScreen } from "../../screens"
+import { RouteProp } from "@react-navigation/native"
 
-export type OrderParamList = {
-  OrdersList
-  OrderDetail
+export enum OrderRoute {
+  List = "OrdersList",
+  Detail = "OrderDetail",
+  Tracking = "OrderTracking"
 }
 
-const OrderStack = createStackNavigator<OrderParamList>()
+export type OrderParamList = {
+  [OrderRoute.List]: undefined
+  [OrderRoute.Detail]: { id: string }
+  [OrderRoute.Tracking]: { id: string }
+}
+
+export type OrderNavigationProp<RouteName extends keyof OrderParamList> = StackNavigationProp<OrderParamList,
+  RouteName>
+export type OrderRouteProp<RouteName extends keyof OrderParamList> = RouteProp<OrderParamList, RouteName>
+
+export interface OrderProps<RouteName extends keyof OrderParamList> {
+  navigation: OrderNavigationProp<RouteName>
+  route: OrderRouteProp<RouteName>
+}
+
+const { Navigator, Screen } = createStackNavigator<OrderParamList>()
 
 export const OrderNavigator = () => (
-  <OrderStack.Navigator>
-    <OrderStack.Screen options={{ headerShown: false }} name="OrdersList" component={OrdersScreen} />
-    <OrderStack.Screen options={{ headerShown: false }} name="OrderDetail" component={OrderDetailScreen} />
-  </OrderStack.Navigator>
+  <Navigator>
+    <Screen name={OrderRoute.List} options={{ headerShown: false }} component={OrdersScreen} />
+    <Screen name={OrderRoute.Detail} options={{ headerShown: false }} component={OrderDetailScreen} />
+    <Screen name={OrderRoute.Tracking} options={{ headerShown: false }} component={OrderTrackingScreen} />
+  </Navigator>
 )

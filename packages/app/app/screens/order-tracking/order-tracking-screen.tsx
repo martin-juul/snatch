@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Dimensions, View, ViewStyle } from "react-native"
-import { Header, MapViewDirections, Screen, Text } from "../../components"
+import { Button, Header, MapViewDirections, Screen, Text } from "../../components"
 import MapView, { Marker, PROVIDER_GOOGLE, Region } from "react-native-maps"
 import { color } from "../../theme"
 import Scooter from "./scooter.svg"
 import { PERMISSIONS, request } from "react-native-permissions"
 import { MOCK_DRIVER_POS_COORDS } from "./mock-driver-pos"
 import Config from "react-native-config"
+import ErrorBoundary from "react-native-error-boundary"
+import { Chat } from "./chat"
+
 // import firestore, {
 //   FirebaseFirestoreTypes,
 // } from '@react-native-firebase/firestore';
@@ -50,7 +53,6 @@ export const OrderTrackingScreen: React.FC = () => {
   useEffect(() => {
     ;(async () => {
       for (const pos of MOCK_DRIVER_POS_COORDS) {
-        console.log(pos)
         setDriverPosition(pos)
       }
     })()
@@ -84,53 +86,69 @@ export const OrderTrackingScreen: React.FC = () => {
     <Screen testID="OrderTrackingScreen" style={ROOT} preset="scroll">
       <Header headerText="Order" />
 
-      <MapView
-        userLocationPriority="high"
-        provider={PROVIDER_GOOGLE}
-        onRegionChange={onRegionChange}
-        cacheEnabled
-        showsBuildings
-        showsScale
-        showsUserLocation
-        showsMyLocationButton
-        initialRegion={{
-          latitude: destination.latitude,
-          longitude: destination.longitude,
-          longitudeDelta: 0.0622,
-          latitudeDelta: 0.0121,
-        }}
-        style={{
-          flex: 1,
-        }}
-      >
-        <MapViewDirections
-          apikey={Config.GOOGLE_MAPS_DIRECTIONS_API_KEY}
-          origin={origin}
-          destination={destination}
-          strokeColor={color.palette.green}
-          strokeWidth={4}
-          mode="DRIVING"
-          language="en"
-          isMemoized
-          resetOnChange={false}
-          ref={mapViewRef}
-        />
+      <ErrorBoundary FallbackComponent={FallbackComponent}>
+        <MapView
+          userLocationPriority="high"
+          provider={PROVIDER_GOOGLE}
+          onRegionChange={onRegionChange}
+          cacheEnabled
+          showsBuildings
+          showsScale
+          showsUserLocation
+          showsMyLocationButton
+          initialRegion={{
+            latitude: destination.latitude,
+            longitude: destination.longitude,
+            longitudeDelta: 0.0622,
+            latitudeDelta: 0.0121,
+          }}
+          style={{
+            flex: 1,
+          }}
+        >
+          <MapViewDirections
+            apikey={Config.GOOGLE_MAPS_DIRECTIONS_API_KEY}
+            origin={origin}
+            destination={destination}
+            strokeColor={color.palette.green}
+            strokeWidth={4}
+            mode="DRIVING"
+            language="en"
+            isMemoized
+            resetOnChange={false}
+            ref={mapViewRef}
+          />
 
-        <Marker identifier="origin_marker" coordinate={origin} />
-        <Marker identifier="destination_marker" coordinate={destination} />
+          <Marker identifier="origin_marker" coordinate={origin} pinColor="#d7c133" />
+          <Marker identifier="destination_marker" coordinate={destination} />
 
-        <Marker identifier="scooter_marker" coordinate={driverPosition}>
-          <Scooter height={48} width={48} />
-        </Marker>
-      </MapView>
+          <Marker identifier="scooter_marker" coordinate={driverPosition}>
+            <Scooter height={48} width={48} />
+          </Marker>
+        </MapView>
+      </ErrorBoundary>
 
-      {__DEV__ && <RegionOverlay region={viewRegion} />}
+      <Chat orderId="1234" />
     </Screen>
   )
 }
 
 type RegionOverlayProps = {
   region: Region
+}
+
+// eslint-disable-next-line node/handle-callback-err
+function FallbackComponent({ error, resetError }: { error: Error, resetError: () => void }) {
+  return (
+    <View>
+      <Text>Something went wrong :(</Text>
+
+      <Text>{error.name}</Text>
+      <Text>{error.message}</Text>
+
+      <Button>Reset error</Button>
+    </View>
+  )
 }
 
 function RegionOverlay({ region }: RegionOverlayProps) {
