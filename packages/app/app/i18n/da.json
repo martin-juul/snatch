@@ -20,7 +20,8 @@
     "string.max.key": "Maksimum"
   },
   "settings": {
-    "language": "Sprog"
+    "language": "Sprog",
+    "privacy": "Privatliv"
   },
   "errors": {
     "invalidEmail": "Ugyldig email adresse",

@@ -20,7 +20,8 @@
     "string.max.key": "Maximum"
   },
   "settings": {
-    "language": "Language"
+    "language": "Language",
+    "privacy": "Privacy"
   },
   "errors": {
     "invalidEmail": "Invalid email address.",
