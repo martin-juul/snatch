@@ -44,7 +44,7 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
-  [GMSServices provideAPIKey:@"AIzaSyDsDR6CI_8Q4rh911PWxboE7IRtOhInZps"];
+  [GMSServices provideAPIKey:@"AIzaSyDGI99-EoCQzIgW5LLfG6JQiJE2YjJQKSI"];
 
   self.moduleRegistryAdapter = [[UMModuleRegistryAdapter alloc] initWithModuleRegistryProvider:[[UMModuleRegistryProvider alloc] init]];
 
