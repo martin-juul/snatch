@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Button, Screen, Text, TextField } from "../../components"
-import { ProfileProps, ProfileRoute } from "../../navigators/profile/profile-navigator"
+import { ProfileProps, ProfileRoute } from "../../navigators/profile"
 import firestore from "@react-native-firebase/firestore"
 import { Customer } from "../../firestore/collections/customer"
 import { useAuth } from "../../contexts/auth"

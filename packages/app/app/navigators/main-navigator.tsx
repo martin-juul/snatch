@@ -1,9 +1,9 @@
 import * as React from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { RestaurantsNavigator } from "./restaurant"
-import { OrderNavigator } from "./order"
 import Feather from "react-native-vector-icons/Feather"
 import { Pressable } from "react-native"
+import { RestaurantsNavigator } from "./restaurant/restaurant-navigator"
+import { OrderNavigator } from "./order/order-navigator"
 import { ProfileNavigator } from "./profile/profile-navigator"
 
 export enum MainRoute {

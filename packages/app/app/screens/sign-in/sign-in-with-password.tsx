@@ -63,7 +63,6 @@ export const SignInWithPassword = () => {
     <View testID="SignInWithPassword">
       <Controller
         name="email"
-        defaultValue=""
         control={control}
         rules={{
           required: true,
@@ -72,7 +71,6 @@ export const SignInWithPassword = () => {
           <TextInput
             testID="emailInput"
             style={INPUT}
-            autoFocus
             autoCapitalize="none"
             autoCorrect={false}
             maxLength={254}
@@ -94,7 +92,6 @@ export const SignInWithPassword = () => {
 
       <Controller
         name="password"
-        defaultValue=""
         control={control}
         rules={{
           required: true,

@@ -8,9 +8,8 @@ import { Card, View } from "react-native-ui-lib"
 import NumericInput from "rn-numeric-input"
 import { clearBasket, removeItemFromBasket, updateBasketItemQuantity } from "../../store/basket"
 import { color } from "../../theme"
-import firestore, { FirebaseFirestoreTypes } from "@react-native-firebase/firestore"
+import firestore from "@react-native-firebase/firestore"
 import { useUser } from "../../contexts/user"
-import { OrderRoute } from "../../navigators/order"
 
 export interface Props extends RestaurantProps<RestaurantRoute.Basket> {
 }

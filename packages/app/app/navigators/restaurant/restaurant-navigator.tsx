@@ -1,19 +1,13 @@
 import React from "react"
-import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack"
-import { RouteProp } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
 import {
   RestaurantBasketScreen,
   RestaurantItemScreen,
   RestaurantListScreen,
   RestaurantDetailScreen,
 } from "../../screens"
+import { RestaurantRoute } from "./types"
 
-export enum RestaurantRoute {
-  List = "List",
-  Detail = "Detail",
-  Item = "Item",
-  Basket = "Basket"
-}
 
 export type RestaurantParamList = {
   [RestaurantRoute.List]: undefined
@@ -25,14 +19,6 @@ export type RestaurantParamList = {
     itemId: string
   }
   [RestaurantRoute.Basket]: undefined
-}
-
-export type RestaurantNavigationProp<RouteName extends keyof RestaurantParamList> = StackNavigationProp<RestaurantParamList, RouteName>
-export type RestaurantRouteProp<RouteName extends keyof RestaurantParamList> = RouteProp<RestaurantParamList, RouteName>
-
-export interface RestaurantProps<RouteName extends keyof RestaurantParamList> {
-  navigation: RestaurantNavigationProp<RouteName>
-  route: RestaurantRouteProp<RouteName>
 }
 
 const RestaurantStack = createStackNavigator<RestaurantParamList>()
