@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { FlatList, Pressable, TextStyle, View, ViewStyle } from "react-native"
+import { FlatList, Pressable, TextStyle, ViewStyle } from "react-native"
+import { Card, View } from "react-native-ui-lib"
 import firestore from "@react-native-firebase/firestore"
 import { Collection, RestaurantMenuItem, RestaurantModel } from "../../firestore/collections"
 import { Header, Screen, Text } from "../../components"
@@ -7,7 +8,8 @@ import { color, spacing } from "../../theme"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 import { useLanguage } from "../../contexts/language"
 
-interface Props extends RestaurantProps<RestaurantRoute.Detail> {}
+interface Props extends RestaurantProps<RestaurantRoute.Detail> {
+}
 
 export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
   const [restaurant, setRestaurant] = useState<RestaurantModel>()
@@ -52,6 +54,19 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
     }
   }, [restaurant])
 
+  const renderItem = ({ item }) => (
+    <Card style={{ marginTop: 10, padding: 5 }} onPress={() => navigation.navigate(RestaurantRoute.Order)}>
+      <Text style={LIST_TEXT}>{item.name}</Text>
+
+      <View style={LIST_ITEM_TEXT_CONTAINER}>
+        <Text style={LIST_SUB_TEXT}>{item.type[currentLanguage]}</Text>
+        <Text style={[LIST_SUB_TEXT, { marginTop: 8 }]}>{item.description[currentLanguage]}</Text>
+      </View>
+
+      <Text style={LIST_PRICE_TEXT}>{(item.price / 100).toString().replace(".", ",")} kr.</Text>
+    </Card>
+  )
+
   return (
     <View testID="RestaurantDetailScreen" style={FULL}>
       <Screen style={CONTAINER} preset="fixed" statusBar="dark-content">
@@ -72,21 +87,7 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
             contentContainerStyle={FLAT_LIST}
             data={[...menuItems]}
             keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => (
-              <Pressable onPress={() => navigation.navigate(RestaurantRoute.Order)}>
-                <View style={LIST_CONTAINER}>
-                  <View style={LIST_ITEM_CONTAINER}>
-                    <View style={LIST_ITEM_TEXT_CONTAINER}>
-                      <Text style={LIST_TEXT}>{item.name}</Text>
-                      <Text style={LIST_SUB_TEXT}>{item.type[currentLanguage]}</Text>
-                      <Text style={LIST_SUB_TEXT}>{item.description[currentLanguage]}</Text>
-                    </View>
-
-                    <Text style={LIST_PRICE_TEXT}>{(item.price / 100).toString().replace(".", ",")} kr.</Text>
-                  </View>
-                </View>
-              </Pressable>
-            )}
+            renderItem={renderItem}
           />
         )}
       </Screen>
@@ -121,17 +122,6 @@ const RESTAURANT_TYPE_CONTAINER: ViewStyle = {
   marginTop: 5,
 }
 
-const LIST_CONTAINER: ViewStyle = {
-  alignItems: "center",
-  flexDirection: "row",
-  paddingVertical: 10,
-}
-
-const LIST_ITEM_CONTAINER: ViewStyle = {
-  alignItems: "stretch",
-  width: "80%",
-}
-
 const LIST_ITEM_TEXT_CONTAINER: ViewStyle = {
   flexDirection: "column",
 }
@@ -148,6 +138,7 @@ const LIST_TEXT: TextStyle = {
 }
 const LIST_SUB_TEXT: TextStyle = {
   color: color.dim,
+  fontSize: 12,
   fontWeight: "500",
   marginLeft: 10,
   width: 240,
@@ -155,6 +146,7 @@ const LIST_SUB_TEXT: TextStyle = {
 const LIST_PRICE_TEXT: TextStyle = {
   textAlign: "right",
   marginTop: -20,
+  alignSelf: "flex-end",
 }
 const FLAT_LIST: ViewStyle = {
   paddingHorizontal: spacing[4],
