@@ -32,7 +32,7 @@ export const ProfileDetailScreen = ({ navigation }: Props) => {
 
   return (
     <Screen style={ROOT}>
-      <Card style={{ marginHorizontal: 25, padding: 12 }}>
+      <Card style={CARD}>
         <TextField
           label="Name"
           value={profile.name}
@@ -85,3 +85,6 @@ export const ProfileDetailScreen = ({ navigation }: Props) => {
 const ROOT: ViewStyle = {
   flex: 1,
 }
+
+const CARD: ViewStyle = {
+  marginHorizontal: 25, padding: 12 }
