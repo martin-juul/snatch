@@ -1,0 +1,286 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Snatch
+  license:
+    name: Apache-2.0
+servers:
+  - url: https://snatch.test/api
+paths:
+  /restaurants:
+    get:
+      summary: List all restaurants
+      operationId: listRestaurants
+      tags:
+        - restaurants
+      parameters:
+        - name: page
+          in: query
+          description: Which page to fetch
+          required: false
+          default: 1
+          schema:
+            type: integer
+            format: int32
+        - name: perPage
+          in: query
+          description: How many items to return at one time
+          required: false
+          default: 30
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A paged array of restaurants
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Restaurant"
+                  perPage:
+                    type: number
+                  total:
+                    type: number
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a restaurant
+      operationId: createRestaurant
+      tags:
+        - restaurants
+      responses:
+        '201':
+          description: Restaurant created successfully
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /users:
+    get:
+      summary: List all users
+      operationId: listUsers
+      tags:
+        - users
+      parameters:
+        - name: page
+          in: query
+          description: Which page to fetch
+          required: false
+          default: 1
+          schema:
+            type: integer
+            format: int32
+        - name: perPage
+          in: query
+          description: How many items to return at one time
+          required: false
+          default: 30
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A paged array of users
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+                  perPage:
+                    type: number
+                  total:
+                    type: number
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a user
+      operationId: createUser
+      tags:
+        - users
+      responses:
+        '201':
+          description: User creates
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /users/{userId}:
+    get:
+      summary: Info for a specific user
+      operationId: showUserById
+      tags:
+        - users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The id of the user to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Update a user
+      operationId: updateUser
+      tags:
+        - users
+      responses:
+        '200':
+          description: Updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      summary: Deactivate a user
+      operationId: deleteUser
+      tags:
+        - users
+      responses:
+        '201':
+          description: User deactivated
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Restaurant:
+      type: object
+      required:
+        - id
+        - name
+        - address
+        - city
+        - postalCode
+        - countryCode
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          min: 3
+          max: 260
+        rating:
+          type: number
+          example: 4.5
+        imageUrl:
+          type: string
+        address:
+          type: string
+        postalCode:
+          type: string
+        countryCode:
+          type: string
+          min: 2
+          max: 2
+          example: 'DK'
+        location:
+          $ref: "#/components/schemas/Location"
+
+    Location:
+      type: object
+      properties:
+        x:
+          type: number
+          description: decimal number
+          example: 10.1
+        y:
+          type: number
+          description: decimal number
+          example: 24.134
+
+    Role:
+      type: string
+      oneOf: ["consumer", "business", "driver"]
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - role
+        - imageUrl
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          min: 3
+          max: 260
+        email:
+          type: string
+          min: 5
+          max: 254
+        imageUrl:
+          type: string
+          example: "https://snatch.test/assets/image0.jpg"
+        role:
+          $ref: "#/components/schemas/Role"
