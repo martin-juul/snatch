@@ -31,7 +31,7 @@ export const OrderTrackingScreen = ({ route, navigation }: Props) => {
           <Button
             testID="chat"
             text="Chat"
-            onPress={() => navigation.navigate(OrderRoute.Chat, { orderId: order.id })}
+            onPress={() => navigation.navigate(OrderRoute.Chat, { orderId: route.params.orderId })}
             preset="secondary"
             style={CHAT_BUTTON}
           />

@@ -7,7 +7,7 @@ export type OrderParamList = {
   [OrderRoute.List]: undefined
   [OrderRoute.Detail]: { id: string }
   [OrderRoute.Tracking]: { customerId: string, orderId: string }
-  [OrderRoute.Chat]: { orderId }
+  [OrderRoute.Chat]: { orderId: string }
 }
 
 const { Navigator, Screen } = createStackNavigator<OrderParamList>()
