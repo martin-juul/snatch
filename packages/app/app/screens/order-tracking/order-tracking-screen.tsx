@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Dimensions, View, ViewStyle } from "react-native"
-import { Header, Screen, Text } from "../../components"
+import { Header, MapViewDirections, Screen, Text } from "../../components"
 import MapView, { Marker, PROVIDER_GOOGLE, Region } from "react-native-maps"
-import MapViewDirections from "react-native-maps-directions"
 import { color } from "../../theme"
 import Scooter from "./scooter.svg"
 import { PERMISSIONS, request } from "react-native-permissions"
 import { MOCK_DRIVER_POS_COORDS } from "./mock-driver-pos"
+import Config from "react-native-config"
 // import firestore, {
 //   FirebaseFirestoreTypes,
 // } from '@react-native-firebase/firestore';
@@ -104,7 +104,7 @@ export const OrderTrackingScreen: React.FC = () => {
         }}
       >
         <MapViewDirections
-          apikey="AIzaSyBaJ0UeOoHDtDg8zKNz0q9Cc19N_HuCz4s"
+          apikey={Config.GOOGLE_MAPS_DIRECTIONS_API_KEY}
           origin={origin}
           destination={destination}
           strokeColor={color.palette.green}
