@@ -27,9 +27,9 @@ export interface OrderProps<RouteName extends keyof OrderParamList> {
 const { Navigator, Screen } = createStackNavigator<OrderParamList>()
 
 export const OrderNavigator = () => (
-  <Navigator>
-    <Screen name={OrderRoute.List} options={{ headerShown: false }} component={OrdersScreen} />
-    <Screen name={OrderRoute.Detail} options={{ headerShown: false }} component={OrderDetailScreen} />
-    <Screen name={OrderRoute.Tracking} options={{ headerShown: false }} component={OrderTrackingScreen} />
+  <Navigator screenOptions={{ headerShown: false }}>
+    <Screen name={OrderRoute.List} component={OrdersScreen} />
+    <Screen name={OrderRoute.Detail} component={OrderDetailScreen} />
+    <Screen name={OrderRoute.Tracking} component={OrderTrackingScreen} />
   </Navigator>
 )
