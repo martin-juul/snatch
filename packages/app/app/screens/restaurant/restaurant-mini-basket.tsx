@@ -5,7 +5,7 @@ import { Text } from "../../components"
 import { ViewStyle } from "react-native"
 import Fontisto from "react-native-vector-icons/Fontisto"
 
-export const RestaurantBasket = () => {
+export const RestaurantMiniBasket = () => {
   const basket = useAppSelector(state => state.basket)
   const [quantity, setQuantity] = useState(0)
   const [totalPrice, setTotalPrice] = useState("0")
