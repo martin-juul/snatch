@@ -45,6 +45,10 @@ module.exports = {
         ,
       },
       {
+        text: 'Process Rapport',
+        link: '/process-rapport/'
+      },
+      {
         text: 'Work log',
         link: '/work-log/',
       },
