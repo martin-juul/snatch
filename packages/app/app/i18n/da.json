@@ -2,15 +2,24 @@
   "common": {
     "buy": "Køb",
     "price": "Pris",
-    "ok": "OK!",
-    "cancel": "Cancel",
-    "back": "Back"
+    "ok": "Ok",
+    "cancel": "Annuller",
+    "back": "Tilbage"
+  },
+  "signIn": "Log ind",
+  "signUp": "Registrer",
+  "emailAddress": "E-Mail Adresse",
+  "password": "Kodeord",
+  "validation": {
+    "mixed.required.key": "Påkrævet",
+    "number.min.key": "Minimum",
+    "string.email.key": "E-Mail Adresse",
+    "string.max.key": "Maksimum"
+  },
+  "settings": {
+    "language": "Sprog"
   },
   "errors": {
-    "invalidEmail": "Invalid email address."
-  },
-  "storybook": {
-    "placeholder": "Placeholder",
-    "field": "Field"
+    "invalidEmail": "Ugyldig email adresse"
   }
 }

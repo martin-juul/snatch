@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { DeviceLanguageContext } from "./interfaces"
-import * as Localization from "expo-localization"
+import i18n from "i18n-js"
+import { loadString, saveString } from "../../utils/storage"
 
 const LanguageContext = createContext<DeviceLanguageContext>({} as any)
 LanguageContext.displayName = "LanguageContext"
@@ -10,18 +11,30 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [context, setContext] = useState<DeviceLanguageContext>()
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.currentLocale())
 
   useEffect(() => {
-    const ctx: DeviceLanguageContext = {
-      currentLanguage: "en",
-      iso639_1: Localization.locale.split("-")[0],
-    }
+    saveString('app_lang', currentLanguage)
+  }, [currentLanguage])
 
-    setContext(ctx)
+  useEffect(() => {
+    loadString('app_lang').then(lang => {
+      if (lang) {
+        setCurrentLanguage(lang)
+      }
+    })
   }, [])
 
-  return <LanguageContext.Provider value={context}>{children}</LanguageContext.Provider>
+  const setLanguage = (lang: string) => {
+    i18n.locale = lang
+    setCurrentLanguage(lang)
+    i18n.reset()
+  }
+
+  return <LanguageContext.Provider value={{
+    currentLanguage,
+    setLanguage,
+  }}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {

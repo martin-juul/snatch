@@ -2,15 +2,24 @@
   "common": {
     "buy": "Buy",
     "price": "Price",
-    "ok": "OK!",
+    "ok": "Ok",
     "cancel": "Cancel",
     "back": "Back"
   },
+  "emailAddress": "E-Mail Address",
+  "password": "Password",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "validation": {
+    "mixed.required.key": "Required",
+    "number.min.key": "Minimum",
+    "string.email.key": "E-Mail Address",
+    "string.max.key": "Maximum"
+  },
+  "settings": {
+    "language": "Language"
+  },
   "errors": {
     "invalidEmail": "Invalid email address."
-  },
-  "storybook": {
-    "placeholder": "Placeholder",
-    "field": "Field"
   }
 }
