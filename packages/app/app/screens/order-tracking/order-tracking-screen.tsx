@@ -84,8 +84,6 @@ export const OrderTrackingScreen: React.FC = () => {
 
   return (
     <Screen testID="OrderTrackingScreen" style={ROOT} preset="scroll">
-      <Header headerText="Order" />
-
       <ErrorBoundary FallbackComponent={FallbackComponent}>
         <MapView
           userLocationPriority="high"
