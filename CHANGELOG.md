@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/martin-juul/snatch/compare/v1.4.0...v1.5.0) (2021-09-22)
+
+
+### Bug Fixes
+
+* module name for typings ([b8d841e](https://github.com/martin-juul/snatch/commit/b8d841e3eb5b7f034af89f7e0ebe15cbdcfc76e6))
+
+
+### Features
+
+* **basket:** added basket screen and state handling ([efb4ddf](https://github.com/martin-juul/snatch/commit/efb4ddf2839428373f11826616388ccf8c14657d))
+* **profile:** added screen ([924b5f3](https://github.com/martin-juul/snatch/commit/924b5f3ceeb8e436ec06063ccc85cef8c62acfd2))
+* **restaurant:** added basket screen ([ff02a33](https://github.com/martin-juul/snatch/commit/ff02a3338ba86c97a482b0fca4b643a535ed9fbb))
+
+
+
+
+
 # [1.4.0](https://github.com/martin-juul/snatch/compare/v1.3.0...v1.4.0) (2021-09-17)
 
 
