@@ -6,8 +6,9 @@ import MapView, {Marker, PROVIDER_GOOGLE, Region} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import {color} from '../../theme';
 import Scooter from './scooter.svg';
-import Config from 'react-native-config';
 import {PERMISSIONS, request} from 'react-native-permissions';
+import { MOCK_DRIVER_POS_COORDS } from "./mock-driver-pos"
+import { delay } from "../../utils/delay"
 // import firestore, {
 //   FirebaseFirestoreTypes,
 // } from '@react-native-firebase/firestore';
@@ -48,6 +49,15 @@ export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
     longitude: 10.39408,
   });
 
+  useEffect(() => {
+    (async () => {
+      for (const pos of MOCK_DRIVER_POS_COORDS) {
+        console.log(pos)
+        setDriverPosition(pos)
+      }
+    })()
+  }, [])
+
   // useEffect(() => {
   //   const subscription = firestore()
   //     .collection<DriverAttributes>('drivers')
@@ -70,7 +80,6 @@ export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
     setViewRegion(region);
   };
 
-  const STROKE_COLOR = color.palette.green;
   const mapViewRef = useRef<MapViewDirections>();
 
   return (
@@ -99,8 +108,8 @@ export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
           apikey="AIzaSyBaJ0UeOoHDtDg8zKNz0q9Cc19N_HuCz4s"
           origin={origin}
           destination={destination}
+          strokeColor={color.palette.green}
           strokeWidth={4}
-          strokeColor={STROKE_COLOR}
           mode="DRIVING"
           language="en"
           isMemoized
@@ -116,7 +125,9 @@ export const OrderTrackingScreen = observer(function OrderTrackingScreen() {
         </Marker>
       </MapView>
 
-      <RegionOverlay region={viewRegion} />
+      {__DEV__ && (
+        <RegionOverlay region={viewRegion} />
+      )}
     </Screen>
   );
 });
