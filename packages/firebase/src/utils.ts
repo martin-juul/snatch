@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export interface GeoPoint {
   latitude: number;
   longitude: number;
@@ -17,8 +18,7 @@ export function calculateCrowDistance(point1: GeoPoint, point2: GeoPoint): numbe
   const lat1 = toRad(point1.latitude);
   const lat2 = toRad(point2.longitude);
 
-  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   return R * c;
