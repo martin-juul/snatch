@@ -1,6 +1,5 @@
 import {ApiResponse} from 'apisauce';
 import {Api} from './api';
-import {GetCharactersResult} from './api.types';
 import {getGeneralApiProblem} from './api-problem';
 
 const API_PAGE_SIZE = 50;
@@ -12,7 +11,7 @@ export class CharacterApi {
     this.api = api;
   }
 
-  async getCharacters(): Promise<GetCharactersResult> {
+  async getCharacters(): Promise<any> {
     try {
       // make the api call
       const response: ApiResponse<any> = await this.api.apisauce.get(
@@ -32,7 +31,7 @@ export class CharacterApi {
 
       return {kind: 'ok', characters};
     } catch (e) {
-      __DEV__ && console.tron.log(e.message);
+      __DEV__ && console.log(e.message);
       return {kind: 'bad-data'};
     }
   }

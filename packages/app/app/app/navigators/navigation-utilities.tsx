@@ -18,7 +18,7 @@ export const RootNavigation = {
 };
 
 export const setRootNavigation = (
-  ref: React.RefObject<NavigationContainerRef>,
+  ref: React.RefObject<NavigationContainerRef<any>>,
 ) => {
   for (const method in RootNavigation) {
     RootNavigation[method] = (...args: any) => {
@@ -51,7 +51,7 @@ export function getActiveRouteName(
  * the navigation or allows exiting the app.
  */
 export function useBackButtonHandler(
-  ref: React.RefObject<NavigationContainerRef>,
+  ref: React.RefObject<NavigationContainerRef<any>>,
   canExit: (routeName: string) => boolean,
 ) {
   const canExitRef = useRef(canExit);
@@ -112,7 +112,7 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
 
     if (previousRouteName !== currentRouteName) {
       // track screens.
-      __DEV__ && console.tron.log(currentRouteName);
+      __DEV__ && console.log(currentRouteName);
     }
 
     // Save the current route name for later comparision

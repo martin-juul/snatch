@@ -32,7 +32,7 @@ export class SnatchApi {
 
       return {kind: 'ok', restaurants};
     } catch (e) {
-      __DEV__ && console.tron.log(e.message);
+      __DEV__ && console.log(e.message);
       return {kind: 'bad-data'};
     }
   }
@@ -55,7 +55,7 @@ export class SnatchApi {
 
       return {kind: 'ok', items};
     } catch (e) {
-      __DEV__ && console.tron.log(e.message);
+      __DEV__ && console.log(e.message);
       return {kind: 'bad-data'};
     }
   }
