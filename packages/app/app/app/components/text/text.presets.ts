@@ -1,4 +1,4 @@
-import { TextStyle } from "react-native"
+import { Platform, TextStyle } from "react-native"
 import { color, typography } from "../../theme"
 
 /**
@@ -24,20 +24,34 @@ export const presets = {
   /**
    * A bold version of the default text.
    */
-  bold: { ...BASE, fontWeight: "bold" } as TextStyle,
+  bold: {
+    ...BASE,
+    fontFamily: Platform.select({ ios: "OpenSans-Bold", android: "OpenSans-Bold" }),
+    fontWeight: "bold",
+  } as TextStyle,
 
   /**
    * Large headers.
    */
-  header: { ...BASE, fontSize: 24, fontWeight: "bold" } as TextStyle,
+  header: {
+    ...BASE,
+    fontFamily: Platform.select({ ios: "OpenSans-Bold", android: "OpenSans-Bold" }),
+    fontSize: 24,
+    fontWeight: "bold",
+  } as TextStyle,
 
   /**
    * Field labels that appear on forms above the inputs.
    */
-  fieldLabel: { ...BASE, fontSize: 13, color: color.dim } as TextStyle,
+  fieldLabel: {
+    ...BASE,
+    fontFamily: Platform.select({ ios: "OpenSans-SemiBold", android: "OpenSans-SemiBold" }),
+    fontSize: 13,
+    color: color.dim,
+  } as TextStyle,
 
   /**
-   * A smaller piece of secondard information.
+   * A smaller piece of secondary information.
    */
   secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
 }
