@@ -12,7 +12,7 @@ export enum OrderRoute {
 export type OrderParamList = {
   [OrderRoute.List]: undefined
   [OrderRoute.Detail]: { id: string }
-  [OrderRoute.Tracking]: { id: string }
+  [OrderRoute.Tracking]: { customerId: string, orderId: string }
 }
 
 export type OrderNavigationProp<RouteName extends keyof OrderParamList> = StackNavigationProp<OrderParamList,
