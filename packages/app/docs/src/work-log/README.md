@@ -4,6 +4,12 @@
 
 + Documentation site
 + Flowchart
++ Gantt chart
++ Added sections of requirements doc
+    + Problem
+    + Current solution
+    + Future solution
+    + Timeline
 
 ## 19-08-2021
 
