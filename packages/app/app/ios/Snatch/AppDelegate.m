@@ -9,6 +9,7 @@
 #import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
 
+#import <Firebase.h>
 #import "ReactNativeConfig.h"
 #import <GoogleMaps/GoogleMaps.h>
 
@@ -45,6 +46,8 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
+  [FIRApp configure];
+  
   NSString *gmapsApiKey = [ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY"];
   [GMSServices provideAPIKey:gmapsApiKey];
 
