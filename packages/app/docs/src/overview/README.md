@@ -7,9 +7,30 @@ sidebar: auto
 [[toc]]
 
 ```mermaid
-graph TD
-    A[App] -->B(Web API)
-    B --> C[Database]
+graph LR
+subgraph mobile-app[Mobile app]
+    subgraph platforms[Platforms]
+        a1(Android)
+        b1(iOS)
+    end
+
+    subgraph thirdparty[Third party]
+        c1(Google Maps SDK)
+        d1(Firebase)
+    end
+
+    style a1 fill:#d3f8a5
+    style b1 fill:#d3f8a5
+end
+
+a1-.-> a2
+b1-.-> a2
+
+subgraph backend[Backend]
+    a2(Webserver)-->b2
+    b2(Lumen)-->c2(Eloquent/ORM)
+    c2-->d2[(Database)]
+end
 ```
 
 ## Use case
@@ -35,7 +56,7 @@ flowchart TD
         B2 -->C2[Prepare order]
         C2 -->D2[Hand over to delivery]
     end
-    D2 -->Driver
+    D2 -->B3
 
     subgraph Driver
         A3[New order notification] -->B3[Drive to Restaurant]
