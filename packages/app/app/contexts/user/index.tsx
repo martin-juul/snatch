@@ -17,7 +17,12 @@ export function UserProvider({ children }: { children: ReactElement }) {
   useEffect(() => {
     async function fetchData() {
       const res = await firestore().collection<Customer>("customers").where("userId", "==", auth.user?.uid).get()
-      const customer = res.docs[0].data()
+      const doc = res.docs[0]
+      if (!doc.exists) {
+        throw new Error("This user does not exist")
+      }
+
+      const customer = doc.data()
 
       setValue(prev => {
         customer.id = res.docs[0].id
