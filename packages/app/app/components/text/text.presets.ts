@@ -62,7 +62,7 @@ export const presets = {
   /**
    * A smaller piece of secondary information.
    */
-  secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
+  secondary: { ...BASE, fontSize: 13, color: color.dim } as TextStyle,
 }
 
 /**

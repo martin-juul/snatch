@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Text as ReactNativeText } from "react-native"
+import { Text as BaseText } from "react-native-ui-lib"
 import { presets } from "./text.presets"
 import { TextProps } from "./text.props"
 import { translate } from "../../i18n"
@@ -21,8 +21,8 @@ export function Text(props: TextProps) {
   const styles = [style, styleOverride]
 
   return (
-    <ReactNativeText {...rest} style={styles}>
+    <BaseText {...rest} style={styles}>
       {content}
-    </ReactNativeText>
+    </BaseText>
   )
 }

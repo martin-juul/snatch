@@ -1,10 +1,11 @@
-import { StyleProp, TextProps as TextProperties, TextStyle } from "react-native"
+import { StyleProp, TextStyle } from "react-native"
+import { TextProps as TextProperties } from "react-native-ui-lib"
 import i18n from "i18n-js"
 import { TextPresets } from "./text.presets"
 import { TxKeyPath } from "../../i18n"
 import { ReactNode } from "react"
 
-export interface TextProps extends TextProperties {
+export type BaseProps = {
   /**
    * Children components.
    */
@@ -36,3 +37,5 @@ export interface TextProps extends TextProperties {
    */
   preset?: TextPresets
 }
+
+export type TextProps = BaseProps & TextProperties
