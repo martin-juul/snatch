@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { DeviceLanguageContext } from "./interfaces"
-import { getDeviceLanguage } from "../../utils/device-language"
+import * as Localization from "expo-localization"
 
 const LanguageContext = createContext<DeviceLanguageContext>({} as any)
 LanguageContext.displayName = "LanguageContext"
@@ -15,7 +15,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   useEffect(() => {
     const ctx: DeviceLanguageContext = {
       currentLanguage: "en",
-      iso639_1: getDeviceLanguage(),
+      iso639_1: Localization.locale.split("-")[0],
     }
 
     setContext(ctx)
