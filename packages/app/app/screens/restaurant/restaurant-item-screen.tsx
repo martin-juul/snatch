@@ -6,7 +6,7 @@ import FastImage from "react-native-fast-image"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 import firestore from "@react-native-firebase/firestore"
 import { OrderItemModel, RestaurantMenuItem } from "../../firestore/collections"
-import { useLanguage } from "../../contexts/language"
+import { useSettings } from "../../contexts/settings"
 import { addItemToBasket, setBasketRestaurantId } from "../../store/basket"
 import NumericInput from "rn-numeric-input"
 import { useAppDispatch, useAppSelector } from "../../store"
@@ -17,7 +17,8 @@ interface Props extends RestaurantProps<RestaurantRoute.Item> {
 
 
 export const RestaurantItemScreen = ({ route, navigation }: Props) => {
-  const lang = useLanguage()
+  const settings = useSettings()
+  const [currentLanguage] = useState(settings.value?.language?.currentLanguage ?? "en")
   const basket = useAppSelector(state => state.basket)
   const dispatch = useAppDispatch()
   const [item, setItem] = useState<RestaurantMenuItem>()
@@ -70,7 +71,7 @@ export const RestaurantItemScreen = ({ route, navigation }: Props) => {
 
           <View>
             <Text text={item.name} />
-            <Text text={item.type[lang.currentLanguage]} />
+            <Text text={item.type[currentLanguage]} />
 
             <View style={PRICE_CONTAINER}>
               <Text tx="common.price" style={PRICE_LABEL} />

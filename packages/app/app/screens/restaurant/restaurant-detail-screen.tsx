@@ -6,7 +6,7 @@ import { Collection, RestaurantMenuItem, RestaurantModel } from "../../firestore
 import { Screen, Text } from "../../components"
 import { color, spacing } from "../../theme"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
-import { useLanguage } from "../../contexts/language"
+import { useSettings } from "../../contexts/settings"
 import { RestaurantMiniBasket } from "./restaurant-mini-basket"
 
 interface Props extends RestaurantProps<RestaurantRoute.Detail> {
@@ -16,7 +16,8 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [restaurant, setRestaurant] = useState<RestaurantModel>()
   const [menuItems, setMenuItems] = useState<RestaurantMenuItem[]>()
-  const { currentLanguage } = useLanguage()
+  const settings = useSettings()
+  const [currentLanguage] = useState(settings.value?.language?.currentLanguage ?? "en")
 
   useEffect(() => {
     async function fetchData() {
