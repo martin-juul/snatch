@@ -1,16 +1,22 @@
 {
-  "name": "functions",
+  "name": "firebase",
+  "version": "1.0.0",
+  "description": "Firebase config & functions",
+  "author": "Martin Juul <code@juul.xyz>",
+  "private": true,
+  "homepage": "",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "14"
+  },
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
+    "serve": "yarn run build && firebase emulators:start --only functions",
+    "shell": "yarn run build && firebase functions:shell",
+    "start": "yarn run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
-  },
-  "engines": {
-    "node": "14"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -29,6 +35,5 @@
     "eslint-plugin-import": "^2.22.0",
     "firebase-functions-test": "^0.2.0",
     "typescript": "^3.8.0"
-  },
-  "private": true
+  }
 }
