@@ -6,21 +6,21 @@ import { RestaurantItemScreen, RestaurantListScreen, RestaurantDetailScreen } fr
 export enum RestaurantRoute {
   List = "List",
   Detail = "Detail",
-  Order = "Order",
+  Item = "Item",
 }
 
 export type RestaurantParamList = {
   [RestaurantRoute.List]: undefined
   [RestaurantRoute.Detail]: {
-    id: string
+    restaurantId: string
   }
-  [RestaurantRoute.Order]: undefined
+  [RestaurantRoute.Item]: {
+    restaurantId: string
+    itemId: string
+  }
 }
 
-export type RestaurantNavigationProp<RouteName extends keyof RestaurantParamList> = StackNavigationProp<
-  RestaurantParamList,
-  RouteName
->
+export type RestaurantNavigationProp<RouteName extends keyof RestaurantParamList> = StackNavigationProp<RestaurantParamList, RouteName>
 export type RestaurantRouteProp<RouteName extends keyof RestaurantParamList> = RouteProp<RestaurantParamList, RouteName>
 
 export interface RestaurantProps<RouteName extends keyof RestaurantParamList> {
@@ -42,6 +42,9 @@ export const RestaurantsNavigator = () => (
       name={RestaurantRoute.Detail}
       component={RestaurantDetailScreen}
     />
-    <RestaurantStack.Screen name={RestaurantRoute.Order} component={RestaurantItemScreen} />
+    <RestaurantStack.Screen
+      name={RestaurantRoute.Item}
+      component={RestaurantItemScreen}
+    />
   </RestaurantStack.Navigator>
 )

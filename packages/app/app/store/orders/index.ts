@@ -1,26 +1,26 @@
-import { OrderModel } from "./model"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { OrderModel } from "../../firestore/collections"
 
 export interface OrdersState {
   orders: OrderModel[]
-  selected: OrderModel | null
 }
 
 const initialState: OrdersState = {
   orders: [],
-  selected: null,
 }
 
 const orders = createSlice({
   name: "orders",
   initialState,
   reducers: {
-    setSelected(state, action: PayloadAction<OrderModel | null>) {
-      state.selected = action.payload
+    addOrders: (state, action: PayloadAction<OrderModel[]>) => {
+      state.orders = action.payload
     },
   },
 })
 
-export const { setSelected } = orders.actions
+export const {
+  addOrders,
+} = orders.actions
 
 export default orders.reducer

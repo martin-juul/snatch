@@ -7,6 +7,7 @@ import { Header, Screen, Text } from "../../components"
 import { color, spacing } from "../../theme"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
 import { useLanguage } from "../../contexts/language"
+import { RestaurantBasket } from "./restaurant-basket"
 
 interface Props extends RestaurantProps<RestaurantRoute.Detail> {
 }
@@ -18,7 +19,7 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await firestore().collection<RestaurantModel>(Collection.Restaurants).doc(route.params.id).get()
+      const res = await firestore().collection<RestaurantModel>(Collection.Restaurants).doc(route.params.restaurantId).get()
 
       // TODO: show a nice modal instead of borking the app
       if (!res.exists) {
@@ -54,8 +55,12 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
     }
   }, [restaurant])
 
+  const goToItem = (itemId: string) => {
+    navigation.navigate(RestaurantRoute.Item, { restaurantId: restaurant.id, itemId })
+  }
+
   const renderItem = ({ item }) => (
-    <Card style={{ marginTop: 10, padding: 5 }} onPress={() => navigation.navigate(RestaurantRoute.Order)}>
+    <Card style={{ marginTop: 10, padding: 5 }} onPress={() => goToItem(item.id)}>
       <Text style={LIST_TEXT}>{item.name}</Text>
 
       <View style={LIST_ITEM_TEXT_CONTAINER}>
@@ -90,6 +95,8 @@ export const RestaurantDetailScreen = ({ route, navigation }: Props) => {
             renderItem={renderItem}
           />
         )}
+
+        <RestaurantBasket />
       </Screen>
     </View>
   )

@@ -76,6 +76,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",
+    "rn-numeric-input": "^1.9.4",
     "validate.js": "0.13.1",
     "yup": "^0.32.9"
   },

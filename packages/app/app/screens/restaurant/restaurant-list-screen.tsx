@@ -33,7 +33,7 @@ export const RestaurantListScreen = ({ navigation }: Props) => {
   }, [])
 
   const goToRestaurant = (id: string) => {
-    navigation.navigate(RestaurantRoute.Detail, { id })
+    navigation.navigate(RestaurantRoute.Detail, { restaurantId: id })
   }
 
   return (

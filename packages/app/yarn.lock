@@ -15122,6 +15122,11 @@ react-native-permissions@^3.0.5:
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.0.5.tgz#94542a343abdac801fa0a4593ea2c751cb45c41f"
   integrity sha512-hcvLtHhTyOTXC+CCv79d4Qtdnj6PGuY5Ms0fhW8V6Et1T/mPvzO6++Du4jwEv/oHZ62qMWKUDq0/Tsh63QHuyQ==
 
+react-native-pixel-perfect@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-pixel-perfect/-/react-native-pixel-perfect-1.0.2.tgz#8e6dc97e377caa4bd07f9e584ba438d53c0e25e8"
+  integrity sha512-0IvYCNkxuQbQC9q4tI+C3i6o38nbx916p7gBRBWuPxDhKBCuTkVV3VukcfW6vtjRlwQm6kwQcF9OtI+yUBt+YA==
+
 react-native-reanimated@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.2.tgz#8bc81c7ee93d599991507bb826050a5eeee1e7f2"
@@ -15992,6 +15997,14 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+rn-numeric-input@^1.9.4:
+  version "1.9.4"
+  resolved "https://registry.yarnpkg.com/rn-numeric-input/-/rn-numeric-input-1.9.4.tgz#e3bf4a0b6aa136d33f4237a78a733a463cd287c2"
+  integrity sha512-WlMm4kAXbt5QM9Dm2rfAlap5S8XqfivdycxXVBq3DP+cJDVwwKDM6vM+bJUePmDel7JbJ275npOTN39iQ1scmg==
+  dependencies:
+    prop-types "^15.6.1"
+    react-native-pixel-perfect "^1.0.2"
 
 rsvp@^4.8.4:
   version "4.8.5"
