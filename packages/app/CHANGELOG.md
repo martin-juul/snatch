@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/martin-juul/snatch/compare/v1.6.2...v1.7.0) (2021-10-12)
+
+
+### Bug Fixes
+
+* added polyfill for crypto ([7d20268](https://github.com/martin-juul/snatch/commit/7d20268dc2fd65ddec1a65774c9b7e7012681ab9))
+* **app:** wrapped root in SettingsProvider ([ea2934e](https://github.com/martin-juul/snatch/commit/ea2934e7f99764c3e44428f3c42bcc95197fe192))
+* **Basket:** use native Date ([11e665b](https://github.com/martin-juul/snatch/commit/11e665b3cb0a10601bc2b4d7e2a07cd757cf74f9))
+* **deps-ios:** exclude i386 and set $RNFirebaseAnalyticsWithoutAdIdSupport to true ([7de136e](https://github.com/martin-juul/snatch/commit/7de136e678703f40c443e212c347935a23d7b440))
+* export settings-privacy-screen ([7caef5f](https://github.com/martin-juul/snatch/commit/7caef5fee594abc81cb4d9f6b366b81323fccec2))
+* **i18n:** added missing settings.privacy key ([c5d92fc](https://github.com/martin-juul/snatch/commit/c5d92fcabbaab95dae9fc38c1c3c3f97f521e8e6))
+* **navigation:** ensure we don't have require cycles ([64803f6](https://github.com/martin-juul/snatch/commit/64803f6f30bf58aa380ae1e161278482f835af8a))
+* **OrdersScreen:** sort newest first ([dcf4668](https://github.com/martin-juul/snatch/commit/dcf46686c2cc77f8881f66095be169431535bd29))
+* **restaurant:** extract language from settings model ([5b94def](https://github.com/martin-juul/snatch/commit/5b94def63e0395ca241c7309bd3ed01a30157cd9))
+
+
+### Features
+
+* **Chat:** connect to rtdb & fixed routing ([9675b64](https://github.com/martin-juul/snatch/commit/9675b644ebe07c1fbb020d2dc3ee51bfdce29b5f))
+* **crashlytics:** log auth errors ([1f0f387](https://github.com/martin-juul/snatch/commit/1f0f387269ee005190fedb612b902b3936c38d43))
+* **Loading:** added AppLoader component ([88a2d6b](https://github.com/martin-juul/snatch/commit/88a2d6b2f55219433306b8cd539d9bceb4429bfa))
+* **Loading:** added loading context ([4ddffb0](https://github.com/martin-juul/snatch/commit/4ddffb0646ab9e991cf5383f1ff84681ae705ee4))
+* **nanoid:** added custom implementation ([7fca60e](https://github.com/martin-juul/snatch/commit/7fca60ecab6409fe87b44e6e7660f65621e00f98))
+* **OrderTrackingScreen:** move chat to own screen ([304aeee](https://github.com/martin-juul/snatch/commit/304aeee7cd611d6a2fa0a74f4c379416aea64f4c))
+* **OrderTracking:** show order items ([7a5235d](https://github.com/martin-juul/snatch/commit/7a5235d778c79f61b310217174f6ea91ade667f6))
+* **Settings:** added context ([cbff665](https://github.com/martin-juul/snatch/commit/cbff665e7b0617365568eef2eb927730f0926335))
+
+
+
+
+
 # [1.6.0](https://github.com/martin-juul/snatch/compare/v1.5.0...v1.6.0) (2021-09-29)
 
 
