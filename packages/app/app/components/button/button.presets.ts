@@ -30,6 +30,13 @@ export const viewPresets: Record<string, ViewStyle> = {
     backgroundColor: color.palette.green,
   } as ViewStyle,
 
+  secondary: {
+    ...BASE_VIEW,
+    backgroundColor: color.background,
+    borderColor: color.palette.green,
+    borderWidth: 2,
+  },
+
   /**
    * A button without extras.
    */
@@ -51,18 +58,14 @@ export const textPresets: Record<ButtonPresetNames, TextStyle> = {
 
   secondary: {
     ...BASE_TEXT,
-    color: color.palette.white,
+    color: color.palette.green,
     fontFamily: "OpenSans-SemiBold",
-    fontSize: 12,
-    paddingHorizontal: spacing[1],
-    paddingVertical: spacing[1],
+    fontSize: 14,
   } as TextStyle,
 
   link: {
     ...BASE_TEXT,
     color: color.text,
-    paddingHorizontal: 0,
-    paddingVertical: 0,
   } as TextStyle,
 }
 
