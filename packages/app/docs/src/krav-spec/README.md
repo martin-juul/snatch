@@ -53,7 +53,6 @@ Levering Bude - sælger levering fra restauranter til kunder
 Kunder - Køber madvare hos restauranter, og køber yderligere levering fra Bude
 
 ## 4. Funktionelle Krav
-### 4.1 Krav og Succeskriterier
 
 ### 4.2 User Interface Wireframes
 
@@ -61,14 +60,15 @@ Kunder - Køber madvare hos restauranter, og køber yderligere levering fra Bude
 
 ### 4.4 User Stories
 
-#### 4.4.1 User flowchart
+Som led i den agile udviklingsmetodik, er værktøjet Featmap valgt til at samle user stories.
+Det giver den fordel at de kan _mappes_ direkte til en specifik opgave.
 
-### 4.5 Test og Acceptkriterier
-#### 4.5.1 Site Acceptance Test
+![Preview](./featmap-preview.jpg)
+
+En _Read Only_ version kan tilgås her [featmap.cptbarbossa.xyz](https://featmap.cptbarbossa.xyz/link/aeb7e4b1-31e3-4425-80f8-9d1a98e2e81d) 
+
+#### 4.4.1 User flowchart
 
 ## 5. Ikke Funktionelle Krav
    5.1 Database Design
    Foreløbigt E/R Diagram
-
-##### 5.2 Krav til Kunden
-##### 5.3 Fysiske Rammer
