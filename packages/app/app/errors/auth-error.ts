@@ -1,3 +1,5 @@
+import crashlytics from "@react-native-firebase/crashlytics"
+
 export class AuthError extends Error {
   public code: string
 
@@ -6,5 +8,7 @@ export class AuthError extends Error {
     super.message = message
 
     this.code = code
+
+    crashlytics().recordError(this, "AuthError")
   }
 }

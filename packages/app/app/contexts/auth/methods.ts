@@ -3,7 +3,7 @@ import { appleAuth } from "@invertase/react-native-apple-authentication"
 import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import { FirebaseAuthResponse } from "./interfaces"
 import { FIREBASE_AUTH_ERROR } from "./error-codes"
-import { AuthError } from "./auth-error"
+import { AuthError } from "../../errors/auth-error"
 
 export const _createUserWithEmailAndPassword = async (email: string, password: string): Promise<FirebaseAuthResponse> => {
   try {
