@@ -1,17 +1,13 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { FoodMenuItemModel } from "../food-menu-item/food-menu-item"
 
 /**
  * Model description here for TypeScript hints.
  */
-export const FoodMenuItemModel = types
-  .model("FoodMenuItem")
+export const FoodMenuItemStoreModel = types
+  .model("FoodMenuItemStore")
   .props({
-    id: types.identifierNumber,
-    restaurantId: types.identifierNumber,
-    name: types.maybe(types.string),
-    type: types.maybe(types.string),
-    image: types.maybe(types.string),
-    price: types.maybe(types.number),
+    foodMenuItems: types.array(FoodMenuItemModel),
   })
   .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -24,14 +20,14 @@ export const FoodMenuItemModel = types
  *  .postProcessSnapshot(omit(["password", "socialSecurityNumber", "creditCardNumber"]))
  */
 
-type FoodMenuItemType = Instance<typeof FoodMenuItemModel>
+type FoodMenuItemStoreType = Instance<typeof FoodMenuItemStoreModel>
 
-export interface FoodMenuItem extends FoodMenuItemType {
+export interface FoodMenuItemStore extends FoodMenuItemStoreType {
 }
 
-type FoodMenuItemSnapshotType = SnapshotOut<typeof FoodMenuItemModel>
+type FoodMenuItemStoreSnapshotType = SnapshotOut<typeof FoodMenuItemStoreModel>
 
-export interface FoodMenuItemSnapshot extends FoodMenuItemSnapshotType {
+export interface FoodMenuItemStoreSnapshot extends FoodMenuItemStoreSnapshotType {
 }
 
-export const createFoodMenuItemDefaultModel = () => types.optional(FoodMenuItemModel, {})
+export const createFoodMenuItemStoreDefaultModel = () => types.optional(FoodMenuItemStoreModel, {})

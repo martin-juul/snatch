@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { Button, Header, Screen, Text } from "../../components"
+import { Button, Screen, Text } from "../../components"
 import { FoodMenuItem } from "../../models/food-menu-item/food-menu-item"
 import { ImageStyle, View, ViewStyle } from "react-native"
-import { MOCK_FOOD_ITEMS, MOCK_RESTAURANT, Restaurant } from "./mock"
-import { useNavigation } from "@react-navigation/native"
+import { MOCK_FOOD_ITEMS } from "./mock"
 import FastImage from "react-native-fast-image"
 
 const FULL: ViewStyle = { flex: 1 }
@@ -15,10 +14,6 @@ const IMAGE: ImageStyle = {
 }
 
 export const RestaurantItemScreen = observer(() => {
-  const navigation = useNavigation()
-  const goBack = () => navigation.goBack()
-
-  const [restaurant, setRestaurant] = useState<Restaurant>(MOCK_RESTAURANT)
   const [item, setItem] = useState<FoodMenuItem>()
 
   useEffect(() => {

@@ -23,9 +23,7 @@ export const Map = observer(function Map(props: MapProps) {
 
   return (
     <View style={styles}>
-      <MapView
-        provider={PROVIDER_GOOGLE}
-      />
+
     </View>
   )
 })
