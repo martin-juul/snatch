@@ -1,18 +1,18 @@
 import * as React from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { RestaurantsNavigator } from "./restaurant"
-import { OrderNavigator } from "./order/order-navigator"
-import { OrderTrackingScreen } from "../screens"
+import { OrderNavigator } from "./order"
 import Feather from "react-native-vector-icons/Feather"
+import { Pressable } from "react-native"
 
 export enum MainRoute {
-  Restaurant = "Restaurant",
+  Restaurants = "Restaurants",
   OrderTracking = "OrderTracking",
   Orders = "Orders",
 }
 
 export type MainParamList = {
-  [MainRoute.Restaurant]: undefined
+  [MainRoute.Restaurants]: undefined
   [MainRoute.OrderTracking]: undefined
   [MainRoute.Orders]: undefined
 }
@@ -21,8 +21,8 @@ const { Navigator, Screen } = createBottomTabNavigator<MainParamList>()
 
 export const MainNavigator = () => (
   <Navigator
-    initialRouteName={MainRoute.Restaurant}
-    screenOptions={({ route }) => ({
+    initialRouteName={MainRoute.Restaurants}
+    screenOptions={({ navigation, route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName: string
 
@@ -30,10 +30,7 @@ export const MainNavigator = () => (
           case MainRoute.Orders:
             iconName = "list"
             break
-          case MainRoute.OrderTracking:
-            iconName = "map-pin"
-            break
-          case MainRoute.Restaurant:
+          case MainRoute.Restaurants:
             iconName = "home"
             break
         }
@@ -42,16 +39,17 @@ export const MainNavigator = () => (
       },
       tabBarActiveTintColor: "tomato",
       tabBarInactiveTintColor: "gray",
+      headerRight: ({ tintColor }) => (
+        <Pressable onPress={() => navigation.navigate('settingsStack')} style={{ marginRight: 12 }}>
+          <Feather name="settings" size={24} color={tintColor} />
+        </Pressable>
+      )
     })}
   >
-    <Screen name={MainRoute.Restaurant} component={RestaurantsNavigator} />
-    <Screen name={MainRoute.OrderTracking} component={OrderTrackingScreen} />
+    <Screen name={MainRoute.Restaurants} component={RestaurantsNavigator} />
     <Screen name={MainRoute.Orders} component={OrderNavigator} />
   </Navigator>
 )
-
-const tabBarIcon = () => {
-}
 
 const exitRoutes = ["Restaurant", "OrderTracking", "Orders"]
 export const canExit = (routeName: string) => exitRoutes.includes(routeName)

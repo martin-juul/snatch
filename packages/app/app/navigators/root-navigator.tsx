@@ -11,6 +11,7 @@ import { MainNavigator } from "./main-navigator"
 import { usePermissions } from "../contexts/permissions"
 import { useAuth } from "../contexts/auth"
 import { AuthNavigator } from "./auth/auth-navigator"
+import { SettingsNavigator } from "./settings/settings-navigator"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -25,12 +26,14 @@ import { AuthNavigator } from "./auth/auth-navigator"
 
 export enum RootRoute {
   AuthStack = "authStack",
-  MainStack = "mainStack"
+  MainStack = "mainStack",
+  SettingsStack = "settingsStack",
 }
 
 export type RootParamList = {
   [RootRoute.AuthStack]: undefined
   [RootRoute.MainStack]: undefined
+  [RootRoute.SettingsStack]: undefined
 }
 
 const { Navigator, Screen } = createStackNavigator<RootParamList>()
@@ -45,14 +48,16 @@ const RootStack = () => {
       }}
     >
       {auth.user
-        ? (
+        ? (<>
           <Screen
             name={RootRoute.MainStack}
             component={MainNavigator}
-            options={{
-              headerShown: false,
-            }}
-          />)
+          />
+          <Screen
+            name={RootRoute.SettingsStack}
+            component={SettingsNavigator}
+          />
+        </>)
         : (
           <Screen
             name={RootRoute.AuthStack}
