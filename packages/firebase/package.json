@@ -1,6 +1,6 @@
 {
   "name": "firebase",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Firebase config & functions",
   "author": "Martin Juul <code@juul.xyz>",
   "private": true,
