@@ -29,6 +29,14 @@ export const OrdersScreen = ({ navigation }: Props) => {
         })
       }
 
+      items.sort((a, b) => {
+        if ((a.createdAt.toDate() as Date).valueOf() < (b.createdAt.toDate() as Date).valueOf()) {
+          return 1
+        }
+
+        return -1
+      })
+
       setOrders(items)
     }
 
