@@ -49,13 +49,13 @@ export const RestaurantItemScreen = observer(() => {
           <Text text={item.type} />
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text text="Pris" style={{ marginRight: 8 }} />
+            <Text tx="common.price" style={{ marginRight: 8 }} />
             <Text text={(item.price / 100).toString().replace('.', ',') + ' kr.'} />
           </View>
         </View>
 
         <View style={{ marginTop: 50 }}>
-          <Button text="Køb" preset="primary" />
+          <Button tx="common.buy" preset="primary" />
         </View>
       </Screen>
     </View>
