@@ -1,7 +1,7 @@
 {
-  "$schema": "http://json.schemastore.org/solidaritySchema",
+  "$schema": "https://json.schemastore.org/solidaritySchema",
   "requirements": {
-    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=8.6.0" }],
+    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=14.0.0" }],
     "Xcode": [
       {
         "rule": "cli",
