@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Button, Screen, Text } from "../../components"
-import { TextStyle, View, ViewStyle } from "react-native"
+import { View } from "react-native-ui-lib"
+import { TextStyle, ViewStyle } from "react-native"
 import { FoodMenuItem, MOCK_FOOD_ITEMS } from "./mock"
 import FastImage from "react-native-fast-image"
 
