@@ -1,4 +1,4 @@
-const { description } = require('../../package')
+const {description} = require('../../package')
 
 module.exports = {
   base: '/snatch/',
@@ -18,9 +18,9 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
-    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
-    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', {name: 'theme-color', content: '#3eaf7c'}],
+    ['meta', {name: 'apple-mobile-web-app-capable', content: 'yes'}],
+    ['meta', {name: 'apple-mobile-web-app-status-bar-style', content: 'black'}],
   ],
 
   /**
@@ -40,8 +40,13 @@ module.exports = {
         link: '/overview/',
       },
       {
+        text: 'Krav specifikation',
+        link: '/krav-spec/'
+        ,
+      },
+      {
         text: 'Work log',
-        link: '/work-log/'
+        link: '/work-log/',
       },
     ],
     sidebar: {
@@ -52,10 +57,10 @@ module.exports = {
           children: [
             '',
             'using-vue',
-          ]
-        }
+          ],
+        },
       ],
-    }
+    },
   },
 
   /**
@@ -66,5 +71,5 @@ module.exports = {
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
     '@renovamen/vuepress-plugin-mermaid',
-  ]
+  ],
 }
