@@ -14,6 +14,8 @@ target 'Snatch' do
     :hermes_enabled => false
   )
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'SnatchTests' do
     inherit! :complete
     # Pods for testing
@@ -28,6 +30,8 @@ target 'Snatch' do
     flipper_post_install(installer)
     react_native_post_install(installer)
   end
+
+  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
 
   # react-native-maps
   rn_maps_path = '../node_modules/react-native-maps'
