@@ -1,0 +1,22 @@
+{
+  "name": "snatcch",
+  "version": "0.0.1",
+  "description": "Food order and delivery app",
+  "main": "index.js",
+  "authors": {
+    "name": "Martin Juul",
+    "email": ""
+  },
+  "repository": "https://github.com/martin-juul/snatch/Snatch",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "@renovamen/vuepress-plugin-mermaid": "^0.2.0"
+  }
+}
