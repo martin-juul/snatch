@@ -2,12 +2,13 @@ import {StyleProp, TextProps as TextProperties, TextStyle} from 'react-native';
 import i18n from 'i18n-js';
 import {TextPresets} from './text.presets';
 import {TxKeyPath} from '../../i18n';
+import { ReactNode } from 'react';
 
 export interface TextProps extends TextProperties {
   /**
    * Children components.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * Text which is looked up via i18n.
