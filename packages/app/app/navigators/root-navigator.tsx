@@ -9,6 +9,8 @@ import { NavigationContainer, NavigationContainerRef } from "@react-navigation/n
 import { createStackNavigator } from "@react-navigation/stack"
 import { MainNavigator } from "./main-navigator"
 import { usePermissions } from "../contexts/permissions"
+import { useAuth } from "../contexts/auth"
+import { AuthNavigator } from "./auth/auth-navigator"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -20,34 +22,50 @@ import { usePermissions } from "../contexts/permissions"
  *   https://reactnavigation.org/docs/params/
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
-export type RootParamList = {
-  mainStack: undefined
+
+export enum RootRoute {
+  AuthStack = "authStack",
+  MainStack = "mainStack"
 }
 
-const Stack = createStackNavigator<RootParamList>()
+export type RootParamList = {
+  [RootRoute.AuthStack]: undefined
+  [RootRoute.MainStack]: undefined
+}
+
+const { Navigator, Screen } = createStackNavigator<RootParamList>()
 
 const RootStack = () => {
+  const auth = useAuth()
+
   return (
-    <Stack.Navigator
+    <Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="mainStack"
-        component={MainNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
-    </Stack.Navigator>
+      {auth.user
+        ? (
+          <Screen
+            name={RootRoute.MainStack}
+            component={MainNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />)
+        : (
+          <Screen
+            name={RootRoute.AuthStack}
+            component={AuthNavigator}
+          />
+        )
+      }
+    </Navigator>
   )
 }
 
-export const RootNavigator = React.forwardRef<
-  NavigationContainerRef,
-  Partial<React.ComponentProps<typeof NavigationContainer>>
->((props, ref) => {
+export const RootNavigator = React.forwardRef<NavigationContainerRef<any>,
+  Partial<React.ComponentProps<typeof NavigationContainer>>>((props, ref) => {
   const permissions = usePermissions()
 
   useEffect(() => {

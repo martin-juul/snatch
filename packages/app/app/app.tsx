@@ -11,6 +11,7 @@ import { PermissionsProvider } from "./contexts/permissions"
 import { LanguageProvider } from "./contexts/language"
 import { bootstrap } from "./bootstrap"
 import { Text } from "./components"
+import { AuthProvider } from "./contexts/auth"
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -28,7 +29,7 @@ function App() {
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
     ;(async () => {
-     //  await initFonts()
+      //  await initFonts()
       await bootstrap()
 
       setIsLoading(true)
@@ -42,17 +43,19 @@ function App() {
   // otherwise, we're ready to render the app
   return (
     <LanguageProvider>
-      <Provider store={store}>
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <PermissionsProvider>
-            <RootNavigator
-              ref={navigationRef}
-              initialState={initialNavigationState}
-              onStateChange={onNavigationStateChange}
-            />
-          </PermissionsProvider>
-        </SafeAreaProvider>
-      </Provider>
+      <AuthProvider>
+        <Provider store={store}>
+          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+            <PermissionsProvider>
+              <RootNavigator
+                ref={navigationRef}
+                initialState={initialNavigationState}
+                onStateChange={onNavigationStateChange}
+              />
+            </PermissionsProvider>
+          </SafeAreaProvider>
+        </Provider>
+      </AuthProvider>
     </LanguageProvider>
   )
 }

@@ -21,7 +21,7 @@ const { Navigator, Screen } = createBottomTabNavigator<MainParamList>()
 
 export const MainNavigator = () => (
   <Navigator
-    initialRouteName="Restaurant"
+    initialRouteName={MainRoute.Restaurant}
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName: string
