@@ -18,6 +18,7 @@ const ICON_SIZE = 18
 
 const SETTINGS: SettingsView[] = [
   { labelTx: "settings.language", route: "Language", icon: <Ionicons name="language" size={ICON_SIZE} /> },
+  { labelTx: "settings.privacy", route: "Privacy", icon: <Ionicons name="ios-eye-outline" size={ICON_SIZE} /> },
 ]
 
 interface Props extends SettingsProps<SettingsRoute.List> {

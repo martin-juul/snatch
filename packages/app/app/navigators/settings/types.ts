@@ -5,6 +5,7 @@ import { SettingsParamList } from "./settings-navigator"
 export enum SettingsRoute {
   List = "Settings",
   Language = "Language",
+  Privacy = "Privacy",
 }
 
 export type SettingsNavigationProp<RouteName extends keyof SettingsParamList> = StackNavigationProp<SettingsParamList, RouteName>

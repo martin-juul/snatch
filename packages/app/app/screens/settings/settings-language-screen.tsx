@@ -1,17 +1,19 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { Screen, Text } from "../../components"
 import { FlatList, StyleSheet } from "react-native"
 import { AppTranslation, LOCALES } from "../../i18n"
 import { ListItem, View } from "react-native-ui-lib"
-import { useLanguage } from "../../contexts/language"
+import { useSettings } from "../../contexts/settings"
 
 export const SettingsLanguageScreen = () => {
-  const lang = useLanguage()
+  const settings = useSettings()
 
-  const setLanguage = (identifier: string) => {
-    lang.setLanguage(identifier)
-  }
-
+  const setLanguage = useCallback((identifier: string) => {
+      settings.methods.setLanguage({
+        currentLanguage: identifier,
+      })
+    }
+    , [settings.methods.setLanguage])
   const renderRow = (item: AppTranslation) => (
     <View>
       <ListItem
