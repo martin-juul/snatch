@@ -26,6 +26,18 @@ de __ikke__ er licenseret med licenser der, kunne skabe problemer i forhold til 
 
 React Native har også runtimes til macOS, Windows og Web - hvilket giver mulighed for at dele samme kodebase på tværs af platformene.
 
+### Hotfixing
+
+CodePush er en microsoft udviklet teknologi til React Native der, gør det muligt at hotfixe/live-patche den kompilerede JavaScript kode samt assets eksempelvis billeder eller skiftyper.
+
+Dette giver mulighed for at udgive opdateringer der ikke afhænger af ændringer i den platform specifikke kode.
+
+![Code Push Diagram](./codepush.png)
+
+CodePush er understøttet på Android, iOS og Windows.
+
+Teknologien er valgt da CodePush platformen er stillet til rådighed som en gratis service fra Microsoft. Skulle det en dag komme til at koste penge, kan man allerede idag skifte til en tredjeparts tjeneste eller vælge at hoste selv. [github.com/lisong/code-push-server](https://github.com/lisong/code-push-server)
+
 ## Ordrerbehandling
 
 ```mermaid
