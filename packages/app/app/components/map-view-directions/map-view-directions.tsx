@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react"
 import { Polyline } from "react-native-maps"
 import isEqual from "lodash.isequal"
@@ -47,7 +48,14 @@ export class MapViewDirections extends Component<MapViewDirectionsProps, MapView
   }
 
   componentDidUpdate(prevProps) {
-    if (!isEqual(prevProps.origin, this.props.origin) || !isEqual(prevProps.destination, this.props.destination) || !isEqual(prevProps.waypoints, this.props.waypoints) || !isEqual(prevProps.mode, this.props.mode) || !isEqual(prevProps.precision, this.props.precision) || !isEqual(prevProps.splitWaypoints, this.props.splitWaypoints)) {
+    if (
+      !isEqual(prevProps.origin, this.props.origin)
+      || !isEqual(prevProps.destination, this.props.destination)
+      || !isEqual(prevProps.waypoints, this.props.waypoints)
+      || !isEqual(prevProps.mode, this.props.mode)
+      || !isEqual(prevProps.precision, this.props.precision)
+      || !isEqual(prevProps.splitWaypoints, this.props.splitWaypoints)
+    ) {
       if (this.props.resetOnChange === false) {
         this.fetchAndRenderRoute(this.props)
       } else {
@@ -225,23 +233,23 @@ export class MapViewDirections extends Component<MapViewDirectionsProps, MapView
       )
     })).then(results => {
       // Combine all Directions API Request results into one
-      const result = results.reduce((acc, { distance, duration, coordinates, fare, waypointOrder }) => {
-        acc.coordinates = [
-          ...acc.coordinates,
+      const result = results.reduce((accumulator, { distance, duration, coordinates, fare, waypointOrder }) => {
+        accumulator.coordinates = [
+          ...accumulator.coordinates,
           ...coordinates,
         ]
-        acc.distance += distance
-        acc.duration += duration
-        acc.fares = [
-          ...acc.fares,
+        accumulator.distance += distance
+        accumulator.duration += duration
+        accumulator.fares = [
+          ...accumulator.fares,
           fare,
         ]
-        acc.waypointOrder = [
-          ...acc.waypointOrder,
+        accumulator.waypointOrder = [
+          ...accumulator.waypointOrder,
           waypointOrder,
         ]
 
-        return acc
+        return accumulator
       }, {
         coordinates: [],
         distance: 0,
@@ -305,7 +313,6 @@ export class MapViewDirections extends Component<MapViewDirectionsProps, MapView
         }
 
         if (json.routes.length) {
-
           const route = json.routes[0]
 
           return Promise.resolve({
@@ -340,7 +347,6 @@ export class MapViewDirections extends Component<MapViewDirectionsProps, MapView
   }, ({ cachedResult, providedArgs }) => {
     const { isMemoized } = this.props
 
-
     if (typeof isMemoized === "boolean") {
       return isMemoized
     }
@@ -357,7 +363,6 @@ export class MapViewDirections extends Component<MapViewDirectionsProps, MapView
   })
 
   render() {
-
     const { coordinates } = this.state
 
     if (!coordinates) {
@@ -365,17 +370,17 @@ export class MapViewDirections extends Component<MapViewDirectionsProps, MapView
     }
 
     const {
-      origin, // eslint-disable-line no-unused-vars
-      waypoints, // eslint-disable-line no-unused-vars
-      splitWaypoints, // eslint-disable-line no-unused-vars
-      destination, // eslint-disable-line no-unused-vars
-      apikey, // eslint-disable-line no-unused-vars
-      onReady, // eslint-disable-line no-unused-vars
-      onError, // eslint-disable-line no-unused-vars
-      mode, // eslint-disable-line no-unused-vars
-      language, // eslint-disable-line no-unused-vars
-      region, // eslint-disable-line no-unused-vars
-      precision,  // eslint-disable-line no-unused-vars
+      origin,
+      waypoints,
+      splitWaypoints,
+      destination,
+      apikey,
+      onReady,
+      onError,
+      mode,
+      language,
+      region,
+      precision,
       ...props
     } = this.props
 
