@@ -14,7 +14,7 @@ const {Navigator, Screen} = createBottomTabNavigator<PrimaryParamList>();
 
 export const MainNavigator = () => (
   <Navigator
-    initialRouteName="OrderTracking"
+    initialRouteName="Restaurant"
     screenOptions={{headerShown: false}}>
     <Screen name="Restaurant" component={RestaurantsNavigator} />
     <Screen name="OrderTracking" component={OrderTrackingScreen} />
