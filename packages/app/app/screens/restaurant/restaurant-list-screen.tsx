@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { FlatList, Pressable, View, ViewStyle } from "react-native"
+import { FlatList, ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
 import FastImage, { ImageStyle } from "react-native-fast-image"
 import firestore from "@react-native-firebase/firestore"
 import { Collection, RestaurantModel } from "../../firestore/collections"
 import { RestaurantProps, RestaurantRoute } from "../../navigators/restaurant"
+import { Card, View } from "react-native-ui-lib"
+import { spacing } from "../../theme"
 
-interface Props extends RestaurantProps<RestaurantRoute.List> {}
+interface Props extends RestaurantProps<RestaurantRoute.List> {
+}
 
 export const RestaurantListScreen = ({ navigation }: Props) => {
   const [restaurants, setRestaurants] = useState<RestaurantModel[]>()
@@ -41,14 +44,22 @@ export const RestaurantListScreen = ({ navigation }: Props) => {
             data={restaurants}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <Pressable onPress={() => goToRestaurant(item.id)} style={ITEM_CONTAINER}>
-                <FastImage style={ITEM_IMAGE} source={{ uri: item.image }} resizeMode={FastImage.resizeMode.contain} />
+              <Card
+                flex
+                onPress={() => goToRestaurant(item.id)}
+                style={{ padding: 10, marginTop: spacing[4] }}
+              >
+                <FastImage
+                  style={ITEM_IMAGE}
+                  source={{ uri: item.image }}
+                  resizeMode={FastImage.resizeMode.stretch}
+                />
 
-                <View style={ITEM_TEXT_CONTAINER}>
+                <View style={{ marginLeft: 20, marginTop: 5 }}>
                   <Text text={item.name} />
-                  <Text text={item.type} />
+                  <Text text={item.type} preset="secondary" />
                 </View>
-              </Pressable>
+              </Card>
             )}
           />
         )}
