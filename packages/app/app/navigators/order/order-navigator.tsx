@@ -1,18 +1,20 @@
 import React from "react"
 import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack"
-import { OrderDetailScreen, OrdersScreen, OrderTrackingScreen } from "../../screens"
+import { OrderDetailScreen, OrdersScreen, OrderTrackingChatScreen, OrderTrackingScreen } from "../../screens"
 import { RouteProp } from "@react-navigation/native"
 
 export enum OrderRoute {
   List = "OrdersList",
   Detail = "OrderDetail",
-  Tracking = "OrderTracking"
+  Chat = "OrderTrackingChat",
+  Tracking = "OrderTracking",
 }
 
 export type OrderParamList = {
   [OrderRoute.List]: undefined
   [OrderRoute.Detail]: { id: string }
   [OrderRoute.Tracking]: { customerId: string, orderId: string }
+  [OrderRoute.Chat]: { orderId }
 }
 
 export type OrderNavigationProp<RouteName extends keyof OrderParamList> = StackNavigationProp<OrderParamList,
@@ -31,5 +33,6 @@ export const OrderNavigator = () => (
     <Screen name={OrderRoute.List} component={OrdersScreen} />
     <Screen name={OrderRoute.Detail} component={OrderDetailScreen} />
     <Screen name={OrderRoute.Tracking} component={OrderTrackingScreen} />
+    <Screen name={OrderRoute.Chat} component={OrderTrackingChatScreen} />
   </Navigator>
 )

@@ -1,9 +1,10 @@
 import React, { useState } from "react"
+import { OrderRoute, OrderRouteProp } from "../../navigators/order"
+import { Button, Screen } from "../../components"
 import { ChatItem } from "react-chat-elements/native"
 import { View } from "react-native-ui-lib"
-import { Button } from "../../components"
-import { ScrollView, TextInput } from "react-native"
 import { color, spacing } from "../../theme"
+import { TextInput, TextStyle, ViewStyle } from "react-native"
 
 export interface ChatMessage {
   id: string
@@ -12,19 +13,17 @@ export interface ChatMessage {
   timestamp: Date
 }
 
-export type ChatProps = {
-  orderId: string
+interface Props extends OrderRouteProp<OrderRoute.Chat> {
 }
 
-export const Chat = ({ orderId }: ChatProps) => {
-
+export const OrderTrackingChatScreen = ({ route }: Props) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     { id: "IkU1", userName: "Hans Hansen", message: "Please confirm order", timestamp: new Date() },
     { id: "kUaM", userName: "Me", message: "Confirmed", timestamp: new Date() },
   ])
 
   return (
-    <ScrollView>
+    <Screen preset="scroll" style={ROOT}>
       {messages.map(message => (
         <ChatItem
           id={message.id.toString()}
@@ -35,15 +34,9 @@ export const Chat = ({ orderId }: ChatProps) => {
         />
       ))}
 
-      <View style={{
-        paddingLeft: 25,
-        paddingRight: 80,
-        marginHorizontal: 5,
-        backgroundColor: color.palette.offWhite,
-        borderRadius: 10,
-      }}>
+      <View style={INPUT_CONTAINER}>
         <TextInput
-          style={{ height: 50 }}
+          style={TEXT_INPUT}
           maxLength={260}
           placeholder="Write your message..."
           multiline
@@ -52,19 +45,42 @@ export const Chat = ({ orderId }: ChatProps) => {
         <Button
           text="Send"
           preset="secondary"
-          textStyle={{ fontSize: 12 }}
-          style={{
-            width: 56,
-            height: 32,
-            paddingHorizontal: spacing[0],
-            paddingVertical: spacing[0],
-            position: "absolute",
-            right: 10,
-            bottom: 10,
-          }}
+          textStyle={SEND_BUTTON_TEXT}
+          style={SEND_BUTTON}
 
         />
       </View>
-    </ScrollView>
+    </Screen>
   )
+}
+
+const ROOT: ViewStyle = {
+  flex: 1,
+}
+
+const INPUT_CONTAINER: ViewStyle = {
+  paddingLeft: 25,
+  paddingRight: 80,
+  marginHorizontal: 5,
+  backgroundColor: color.palette.offWhite,
+  borderRadius: 10,
+  marginTop: "auto",
+}
+
+const TEXT_INPUT: TextStyle = {
+  height: 50,
+}
+
+const SEND_BUTTON_TEXT: TextStyle = {
+  fontSize: 12,
+}
+
+const SEND_BUTTON: ViewStyle = {
+  width: 56,
+  height: 32,
+  paddingHorizontal: spacing[0],
+  paddingVertical: spacing[0],
+  position: "absolute",
+  right: 10,
+  bottom: 10,
 }

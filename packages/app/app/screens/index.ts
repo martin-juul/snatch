@@ -1,4 +1,5 @@
 export * from "./order-tracking/order-tracking-screen"
+export * from "./order-tracking/order-tracking-chat-screen"
 export * from "./orders/orders-screen"
 export * from "./orders/order-detail-screen"
 export * from "./profile/profile-detail-screen"
