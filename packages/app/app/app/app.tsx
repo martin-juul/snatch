@@ -17,7 +17,6 @@ import {
   setRootNavigation,
   useNavigationPersistence,
 } from "./navigators"
-import { ToggleStorybook } from "../storybook/toggle-storybook"
 import { enableScreens } from "react-native-screens"
 import { PermissionsProvider } from "./contexts/permissions"
 
@@ -41,19 +40,17 @@ function App() {
 
   // otherwise, we're ready to render the app
   return (
-    <ToggleStorybook>
-      <Provider store={store}>
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <PermissionsProvider>
-            <RootNavigator
-              ref={navigationRef}
-              initialState={initialNavigationState}
-              onStateChange={onNavigationStateChange}
-            />
-          </PermissionsProvider>
-        </SafeAreaProvider>
-      </Provider>
-    </ToggleStorybook>
+    <Provider store={store}>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <PermissionsProvider>
+          <RootNavigator
+            ref={navigationRef}
+            initialState={initialNavigationState}
+            onStateChange={onNavigationStateChange}
+          />
+        </PermissionsProvider>
+      </SafeAreaProvider>
+    </Provider>
   )
 }
 
