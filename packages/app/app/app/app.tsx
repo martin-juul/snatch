@@ -1,11 +1,9 @@
 import "./i18n"
 import "./utils/ignore-warnings"
 import React, { useEffect, useRef } from "react"
+import "./bootstrap"
 import { NavigationContainerRef } from "@react-navigation/native"
-import {
-  SafeAreaProvider,
-  initialWindowMetrics,
-} from "react-native-safe-area-context"
+import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context"
 import { initFonts } from "./theme/fonts"
 import { Provider } from "react-redux"
 import { store } from "./store"
@@ -17,10 +15,8 @@ import {
   setRootNavigation,
   useNavigationPersistence,
 } from "./navigators"
-import { enableScreens } from "react-native-screens"
 import { PermissionsProvider } from "./contexts/permissions"
-
-enableScreens()
+import { LanguageProvider } from "./contexts/language"
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -40,17 +36,19 @@ function App() {
 
   // otherwise, we're ready to render the app
   return (
-    <Provider store={store}>
-      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <PermissionsProvider>
-          <RootNavigator
-            ref={navigationRef}
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
-        </PermissionsProvider>
-      </SafeAreaProvider>
-    </Provider>
+    <LanguageProvider>
+      <Provider store={store}>
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <PermissionsProvider>
+            <RootNavigator
+              ref={navigationRef}
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            />
+          </PermissionsProvider>
+        </SafeAreaProvider>
+      </Provider>
+    </LanguageProvider>
   )
 }
 
