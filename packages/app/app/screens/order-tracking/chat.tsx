@@ -32,19 +32,18 @@ export const Chat = ({ orderId }: ChatProps) => {
     <View style={{ marginTop: 5, marginBottom: 5 }}>
       <Button
         preset="secondary"
-        style={{ height: 32, width: 100, paddingHorizontal: 0, paddingVertical: 0, alignSelf: "center" }}
+        style={{ alignSelf: "center" }}
+        textStyle={{ color: color.palette.green }}
         onPress={() => toggleExpanded()}
-      >
-        <Text
-          style={{ color: color.palette.white }}
-        >{expanded ? "Hide chat" : "Show chat"}</Text>
-      </Button>
+        text={expanded ? "Hide chat" : "Show chat"}
+      />
 
       <ExpandableSection
         expanded={expanded}
       >
         {messages.map(message => (
           <ChatItem
+            avatar=""
             id={message.id.toString()}
             key={message.id}
             title={message.userName}
