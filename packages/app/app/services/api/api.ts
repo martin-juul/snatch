@@ -1,5 +1,4 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce"
-import perf, { FirebasePerformanceTypes } from "@react-native-firebase/perf"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import * as Types from "./api.types"
@@ -43,8 +42,6 @@ export class Api {
         Accept: "application/json",
       },
     })
-
-    this.attachInterceptors()
   }
 
   /**
@@ -105,62 +102,5 @@ export class Api {
     } catch {
       return { kind: "bad-data" }
     }
-  }
-
-  private attachInterceptors() {
-    this.apisauce.axiosInstance.interceptors.request.use(async (config) => {
-      try {
-        const httpMetric = perf().newHttpMetric(config.url, config.method as FirebasePerformanceTypes.HttpMethod)
-
-        Object.assign(config, { metadata: httpMetric })
-
-        // add any extra metric attributes, if required
-        // httpMetric.putAttribute('userId', '12345678');
-
-        await httpMetric.start()
-      } finally {
-        // noinspection ReturnInsideFinallyBlockJS
-        return config
-      }
-    })
-
-    this.apisauce.axiosInstance.interceptors.response.use(
-      async (response) => {
-        try {
-          // Request was successful, e.g. HTTP code 200
-
-          // @ts-ignore
-          const { httpMetric } = response.config.metadata
-
-          // add any extra metric attributes if needed
-          // httpMetric.putAttribute('userId', '12345678');
-
-          httpMetric.setHttpResponseCode(response.status)
-          httpMetric.setResponseContentType(response.headers["content-type"])
-          await httpMetric.stop()
-        } finally {
-          // noinspection ReturnInsideFinallyBlockJS
-          return response
-        }
-      },
-      async (error) => {
-        try {
-          // Request failed, e.g. HTTP code 500
-
-          const { httpMetric } = error.config.metadata
-
-          // add any extra metric attributes if needed
-          // httpMetric.putAttribute('userId', '12345678');
-
-          httpMetric.setHttpResponseCode(error.response.status)
-          httpMetric.setResponseContentType(error.response.headers["content-type"])
-          await httpMetric.stop()
-        } finally {
-          // Ensure failed requests throw after interception
-          // noinspection ReturnInsideFinallyBlockJS
-          return Promise.reject(error)
-        }
-      },
-    )
   }
 }
