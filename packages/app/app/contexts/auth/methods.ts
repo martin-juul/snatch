@@ -3,6 +3,7 @@ import { appleAuth } from "@invertase/react-native-apple-authentication"
 import { GoogleSignin } from "@react-native-google-signin/google-signin"
 import { FirebaseAuthResponse } from "./interfaces"
 import { FIREBASE_AUTH_ERROR } from "./error-codes"
+import { AuthError } from "./auth-error"
 
 export const _createUserWithEmailAndPassword = async (email: string, password: string): Promise<FirebaseAuthResponse> => {
   try {
@@ -19,13 +20,11 @@ export const _createUserWithEmailAndPassword = async (email: string, password: s
       console.log("That email address is invalid!")
     }
 
-    return {
-      success: false,
-      error: {
-        code: e.code,
-        message: e.message,
-      },
+    if (e.code === FIREBASE_AUTH_ERROR.WRONG_PASSWORD) {
+      console.log("The password is wrong!")
     }
+
+    throw new AuthError(e.code, e.message)
   }
 }
 
@@ -37,13 +36,7 @@ export const _signInWithEmailAndPassword = async (email: string, password: strin
 
     return credential
   } catch (e) {
-    return {
-      success: false,
-      error: {
-        code: e.code,
-        message: e.message,
-      },
-    }
+    throw new AuthError(e.code, e.message)
   }
 }
 
@@ -56,13 +49,7 @@ export const _appleSignIn = async (): Promise<FirebaseAuthResponse> => {
 
   // Ensure Apple returned a user identityToken
   if (!appleAuthRequestResponse.identityToken) {
-    return {
-      success: false,
-      error: {
-        code: FIREBASE_AUTH_ERROR.APPLE_SIGN_IN_MISSING_IDENTITY_TOKEN,
-        message: "Apple Sign-In failed - missing identify token",
-      },
-    }
+    throw new AuthError(FIREBASE_AUTH_ERROR.APPLE_SIGN_IN_MISSING_IDENTITY_TOKEN, "Apple Sign-In failed - missing identify token")
   }
 
   // Create a Firebase credential from the response
@@ -84,12 +71,6 @@ export const _googleSignIn = async (): Promise<FirebaseAuthResponse> => {
     // Sign-in the user with the credential
     return auth().signInWithCredential(googleCredential)
   } catch (e) {
-    return {
-      success: false,
-      error: {
-        code: e.code,
-        message: e.message,
-      },
-    }
+    throw new AuthError(e.code, e.message)
   }
 }
