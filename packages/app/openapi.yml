@@ -39,7 +39,7 @@ paths:
               schema:
                 type: string
           content:
-            application/json:
+            application/json:    
               schema:
                 type: object
                 properties:
@@ -71,6 +71,96 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /restaurants/food:
+    get:
+      summary: List all food items
+      operationId: listFood
+      tags:
+        - restaurants
+      parameters:
+        - name: page
+          in: query
+          description: Which page to fetch
+          required: false
+          default: 1
+          schema:
+            type: integer
+            format: int32
+        - name: perPage
+          in: query
+          description: How many items to return at one time
+          required: false
+          default: 30
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: A paged array of food items
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:    
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FoodItem"
+                  perPage:
+                    type: number
+                  total:
+                    type: number
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a food item
+      operationId: createFood
+      tags:
+        - restaurants
+      responses:
+        '201':
+          description: Food item created successfully
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /restaurants/food/{foodId}:
+      get:
+        summary: Info for a specific food item
+        operationId: showFoodById
+        tags:
+          - restaurants
+        parameters:
+          - name: foodId
+            in: path
+            required: true
+            description: The id of the food item to retrieve
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Expected response to a valid request
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/FoodItem"
+          default:
+            description: unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
   /users:
     get:
       summary: List all users
@@ -103,7 +193,7 @@ paths:
               schema:
                 type: string
           content:
-            application/json:
+            application/json:    
               schema:
                 type: object
                 properties:
@@ -241,6 +331,21 @@ components:
           example: 'DK'
         location:
           $ref: "#/components/schemas/Location"
+    FoodItem:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Tom yom"
+        type:
+          type: string
+          example: "Soup"
+        imageUrl:
+          type: string
+        price:
+          type: number
+          example: 3900
+          description: "Price in subunits (cents)"
 
     Location:
       type: object
@@ -253,7 +358,7 @@ components:
           type: number
           description: decimal number
           example: 24.134
-
+          
     Role:
       type: string
       oneOf: ["consumer", "business", "driver"]
@@ -283,4 +388,4 @@ components:
           type: string
           example: "https://snatch.test/assets/image0.jpg"
         role:
-          $ref: "#/components/schemas/Role"
+          $ref: "#/components/schemas/Role" 
