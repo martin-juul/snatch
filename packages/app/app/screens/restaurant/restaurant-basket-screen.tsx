@@ -47,15 +47,13 @@ export const RestaurantBasketScreen = ({ route, navigation }: Props) => {
       deliveryDistance: 10000,
       deliveryFee: 2900,
       deliveryLocation: customer.location,
-      createdAt: FirebaseFirestoreTypes.Timestamp.fromDate(new Date()),
+      createdAt: new Date(),
     }
 
     firestore().collection<OrderModel>("orders").add(order)
       .then(() => {
         dispatch(clearBasket())
-        navigation.navigate(OrderRoute.List)
       })
-      .catch(console.error)
   }
 
   const renderRow = (item: OrderItemModel) => (
