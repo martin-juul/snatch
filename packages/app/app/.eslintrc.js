@@ -14,4 +14,4 @@ module.exports = {
     jest: false,
     it: false,
   },
-}
+};

@@ -1,1 +1,1 @@
-export const reloadApp = async () => device.reloadReactNative()
+export const reloadApp = async () => device.reloadReactNative();
