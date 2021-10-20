@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/solidaritySchema",
+  "requirements": {
+    "Node": [{ "rule": "cli", "binary": "node", "semver": ">=14.0.0" }],
+    "Xcode": [
+      {
+        "rule": "cli",
+        "binary": "xcodebuild",
+        "version": "-version",
+        "semver": ">=9.2.0",
+        "platform": "darwin"
+      }
+    ],
+    "CocoaPods": [
+      {
+        "rule": "cli",
+        "binary": "pod",
+        "version": "--version",
+        "semver": ">=1.7.0",
+        "platform": "darwin"
+      }
+    ]
+  }
+}

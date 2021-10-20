@@ -1,4 +1,4 @@
-package com.snatch;
+package xyz.juul.snatchapp;
 
 import com.facebook.react.ReactActivity;
 
