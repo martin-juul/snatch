@@ -39,6 +39,10 @@ module.exports = {
         text: "Krav specifikation",
         link: "/krav-specifikation/",
       },
+      {
+        text: "Arbejdslog",
+        link: "/arbejdslog/",
+      },
     ],
     sidebar: {
 

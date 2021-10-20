@@ -3,4 +3,5 @@
 # 20-10-2021
 
 + Opsat vuepress til levende dokumentation
-+ Begyndt på problemformulering & krav specifikation
++ Skrevet problemformulering og krav specifikation
++ Skaffold React Native projekt
