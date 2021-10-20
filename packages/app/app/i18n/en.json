@@ -1,0 +1,31 @@
+{
+  "common": {
+    "buy": "Buy",
+    "price": "Price",
+    "loading": "Loading",
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "back": "Back",
+    "save": "Save"
+  },
+  "addToBasket": "Add to basket",
+  "emailAddress": "E-Mail Address",
+  "password": "Password",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "validation": {
+    "isInList": "{attribute} is in list",
+    "mixed.required.key": "Required",
+    "number.min.key": "Minimum",
+    "string.email.key": "E-Mail Address",
+    "string.max.key": "Maximum"
+  },
+  "settings": {
+    "language": "Language",
+    "privacy": "Privacy"
+  },
+  "errors": {
+    "invalidEmail": "Invalid email address.",
+    "notFound": "does not exist"
+  }
+}

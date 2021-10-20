@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "jsx": "react-native",
     "lib": [
       "dom",
       "esnext"
     ],
+    "module": "es2015",
     "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noImplicitThis": false,
     "noEmit": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -22,14 +28,17 @@
       "constant/*": [
         "app/constant/*"
       ],
-      "ducks/*": [
-        "app/ducks/*"
+      "i18n/*": [
+        "app/i18n/*"
       ],
       "interfaces/*": [
         "app/interfaces/*"
       ],
       "navigation/*": [
         "app/navigation/*"
+      ],
+      "screens/*": [
+        "app/screens/*"
       ],
       "style/*": [
         "app/style/*"
