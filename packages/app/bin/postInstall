@@ -3,12 +3,12 @@
 const childProcess = require("child_process")
 const os = require("os")
 
-  /**
-   * Do all things that need to be done after installing packages
-   *
-   * Yes, it slows down package installation a little, but it's nice to not
-   * have to remember these extra steps.
-   */
+/**
+ * Do all things that need to be done after installing packages
+ *
+ * Yes, it slows down package installation a little, but it's nice to not
+ * have to remember these extra steps.
+ */
 ;[
   // Apply patches
   { command: "patch-package" },

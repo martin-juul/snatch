@@ -14,7 +14,6 @@
   "signIn": "Sign in",
   "signUp": "Sign up",
   "validation": {
-    "isInList": "{attribute} is in list",
     "mixed.required.key": "Required",
     "number.min.key": "Minimum",
     "string.email.key": "E-Mail Address",

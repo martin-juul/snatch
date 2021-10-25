@@ -1,0 +1,29 @@
+import React from "react"
+import { createStackNavigator, StackNavigationProp } from "@react-navigation/stack"
+import { <%= props.pascalCaseName %>LanguageScreen, <%= props.pascalCaseName %>Screen } from "../../screens"
+import { RouteProp } from "@react-navigation/native"
+import { translate } from "../../i18n"
+
+export enum <%= props.pascalCaseName %>Route {
+  List = "List",
+}
+
+export type <%= props.pascalCaseName %>ParamList = {
+  [<%= props.pascalCaseName %>Route.List]: undefined
+}
+
+export type <%= props.pascalCaseName %>NavigationProp<RouteName extends keyof <%= props.pascalCaseName %>ParamList> = StackNavigationProp<<%= props.pascalCaseName %>ParamList, RouteName>
+export type <%= props.pascalCaseName %>RouteProp<RouteName extends keyof <%= props.pascalCaseName %>ParamList> = RouteProp<<%= props.pascalCaseName %>ParamList, RouteName>
+
+export interface <%= props.pascalCaseName %>Props<RouteName extends keyof <%= props.pascalCaseName %>ParamList> {
+  navigation: <%= props.pascalCaseName %>NavigationProp<RouteName>
+  route: <%= props.pascalCaseName %>RouteProp<RouteName>
+}
+
+const { Navigator, Screen } = createStackNavigator<<%= props.pascalCaseName %>ParamList>()
+
+export const <%= props.pascalCaseName %>Navigator = () => (
+  <Navigator>
+
+  </Navigator>
+)

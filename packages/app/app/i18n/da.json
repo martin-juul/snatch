@@ -14,7 +14,6 @@
   "emailAddress": "E-Mail Adresse",
   "password": "Kodeord",
   "validation": {
-    "isInList": "{attribute} er i listen",
     "mixed.required.key": "Påkrævet",
     "number.min.key": "Minimum",
     "string.email.key": "E-Mail Adresse",

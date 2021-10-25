@@ -1,5 +1,6 @@
-import './i18n';
+import "./i18n"
+import { buildYupLocale } from "./build-yup-locale"
+export * from "./i18n"
+export * from "./translate"
 
-export * from './i18n';
-export * from './translate';
-export * from './languages';
+buildYupLocale()
