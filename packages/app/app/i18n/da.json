@@ -1,0 +1,30 @@
+{
+  "common": {
+    "buy": "Køb",
+    "price": "Pris",
+    "ok": "Ok",
+    "loading": "Indlæser",
+    "cancel": "Annuller",
+    "back": "Tilbage",
+    "save": "Gem"
+  },
+  "addToBasket": "Tilføj til kurv",
+  "signIn": "Log ind",
+  "signUp": "Registrer",
+  "emailAddress": "E-Mail Adresse",
+  "password": "Kodeord",
+  "validation": {
+    "mixed.required.key": "Påkrævet",
+    "number.min.key": "Minimum",
+    "string.email.key": "E-Mail Adresse",
+    "string.max.key": "Maksimum"
+  },
+  "settings": {
+    "language": "Sprog",
+    "privacy": "Privatliv"
+  },
+  "errors": {
+    "invalidEmail": "Ugyldig email adresse",
+    "notFound": "findes ikke"
+  }
+}

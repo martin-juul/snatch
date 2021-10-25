@@ -1,48 +1,21 @@
 {
   "compilerOptions": {
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "module": "es2015",
     "moduleResolution": "node",
-    "noEmit": true,
-    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "lib": ["esnext"],
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "app/*"
-      ],
-      "components/*": [
-        "app/components/*"
-      ],
-      "constant/*": [
-        "app/constant/*"
-      ],
-      "ducks/*": [
-        "app/ducks/*"
-      ],
-      "interfaces/*": [
-        "app/interfaces/*"
-      ],
-      "navigation/*": [
-        "app/navigation/*"
-      ],
-      "style/*": [
-        "app/style/*"
-      ],
-      "utils/*": [
-        "app/utils/*"
-      ]
-    }
+    "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["index.js", "app", "test", "storybook"]
 }
