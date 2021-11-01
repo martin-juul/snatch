@@ -36,10 +36,6 @@ module.exports = {
     lastUpdated: true,
     nav: [
       {
-        text: 'Krav specifikation',
-        link: '/krav-specifikation/',
-      },
-      {
         text: 'Produkt Rapport',
         link: '/produkt-rapport/',
       },
