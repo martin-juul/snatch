@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.7.0](https://github.com/martin-juul/snatch/compare/v1.6.2...v1.7.0) (2021-10-12)
+# [1.7.0](https://github.com/martin-juul/snatch/compare/v1.6.2...v1.7.0) (2021-10-30)
 
 
 ### Bug Fixes
@@ -42,7 +42,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.6.2](https://github.com/martin-juul/snatch/compare/v1.6.1...v1.6.2) (2021-10-04)
+## [1.6.2](https://github.com/martin-juul/snatch/compare/v1.6.1...v1.6.2) (2021-10-29)
 
 **Note:** Version bump only for package root
 
@@ -50,7 +50,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.6.1](https://github.com/martin-juul/snatch/compare/v1.6.0...v1.6.1) (2021-09-30)
+## [1.6.1](https://github.com/martin-juul/snatch/compare/v1.6.0...v1.6.1) (2021-10-28)
 
 **Note:** Version bump only for package root
 
@@ -58,7 +58,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.6.0](https://github.com/martin-juul/snatch/compare/v1.5.0...v1.6.0) (2021-09-29)
+# [1.6.0](https://github.com/martin-juul/snatch/compare/v1.5.0...v1.6.0) (2021-10-27)
 
 
 ### Bug Fixes
@@ -74,7 +74,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.5.0](https://github.com/martin-juul/snatch/compare/v1.4.0...v1.5.0) (2021-09-22)
+# [1.5.0](https://github.com/martin-juul/snatch/compare/v1.4.0...v1.5.0) (2021-10-26)
 
 
 ### Bug Fixes
@@ -92,7 +92,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.4.0](https://github.com/martin-juul/snatch/compare/v1.3.0...v1.4.0) (2021-09-17)
+# [1.4.0](https://github.com/martin-juul/snatch/compare/v1.3.0...v1.4.0) (2021-10-25)
 
 
 ### Bug Fixes
@@ -112,7 +112,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.3.0](https://github.com/martin-juul/snatch/compare/v1.2.0...v1.3.0) (2021-09-17)
+# [1.3.0](https://github.com/martin-juul/snatch/compare/v1.2.0...v1.3.0) (2021-10-22)
 
 
 ### Bug Fixes
@@ -139,7 +139,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [1.2.0](https://github.com/martin-juul/snatch/compare/v1.1.0...v1.2.0) (2021-09-16)
+# [1.2.0](https://github.com/martin-juul/snatch/compare/v1.1.0...v1.2.0) (2021-10-21)
 
 
 ### Bug Fixes
@@ -161,7 +161,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# 1.1.0 (2021-09-15)
+# 1.1.0 (2021-10-20)
 
 
 ### Bug Fixes
