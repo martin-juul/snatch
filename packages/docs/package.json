@@ -1,0 +1,22 @@
+{
+  "name": "docs",
+  "version": "1.8.0",
+  "description": "Documentation for the Snatch project",
+  "author": "Martin Juul <code@juul.xyz>",
+  "homepage": "https://github.com/martin-juul/snatch/packages/docs#readme",
+  "license": "Apache-2.0",
+  "main": "lib/docs.js",
+  "private": true,
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src",
+    "build:pdf": "vuepress export src"
+  },
+  "devDependencies": {
+    "@renovamen/vuepress-plugin-mermaid": "^0.2.0",
+    "@snowdog/vuepress-plugin-pdf-export": "loren138/vuepress-plugin-pdf-export",
+    "@vuepress/plugin-active-header-links": "^1.8.2",
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
+    "vuepress": "^1.8.2"
+  }
+}
