@@ -43,10 +43,6 @@ module.exports = {
         text: 'Process Rapport',
         link: '/process-rapport/',
       },
-      {
-        text: 'Arbejdslog',
-        link: '/arbejdslog/',
-      },
     ],
     sidebar: {},
   },

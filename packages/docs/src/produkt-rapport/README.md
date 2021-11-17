@@ -343,26 +343,6 @@ Teknologien er valgt da CodePush platformen er stillet til rådighed som en grat
 dag komme til at koste penge, kan man allerede idag skifte til en tredjeparts tjeneste eller vælge at hoste
 selv. [github.com/lisong/code-push-server](https://github.com/lisong/code-push-server)
 
-## Arbejdsmetode
-
-### Changelogs
-
-For at have en brugbar `commit log` og _changelogs_, er [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) specifikationen anvendt.
-
-| Commit prefix | Scope                    | Forklaring                                                                               |
-|---------------|--------------------------|------------------------------------------------------------------------------------------|
-| feat          | Features                 | En ny feature                                                                            |
-| fix           | Bug fixes                | Fejlrettelse                                                                             |
-| docs          | Documentation            | Ændringer der kun vedrører dokumentationen                                               |
-| style         | Styles                   | Ændringer, der ikke påvirker kodens betydning (whitespace, formatering, opstilning etc.) |
-| refactor      | Code refactoring         | En kodeændring, der hverken retter en fejl eller tilføjer en funktion                    |
-| perf          | Performance improvement  | En kodeændring, der forbedrer ydeevnen                                                   |
-| test          | Tests                    | Tilføjelse af manglende tests eller korrektion af eksisterende tests                     |
-| build         | Builds                   | Ændringer, der påvirker byggesystemet                                                    |
-| ci            | Continuous Integrations  | Ændringer af vores CI -konfigurationsfiler og scripts                                    |
-| chore         | Chores                   | Andre ændringer, der ikke ændrer applikationsspecifik kildekode eller testfiler          |
-| revert        | Reverts                  | Gå tilbage til et tidligere commit                                                       |
-
 ## Ordrerbehandling
 
 ```mermaid
